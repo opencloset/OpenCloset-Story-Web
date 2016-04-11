@@ -1,0 +1,253 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+@import "vendor/Materialize/sass/components/color";
+
+html {
+    font-family: "Roboto", "Noto Sans KR", "Nanum Gothic", sans-serif;
+}
+
+li.search-out:hover {
+    background: transparent;
+}
+
+.search-out {
+    display: none;
+    input[type=text]:focus:not([readonly]) {
+        border-bottom: 1px solid #000 !important;
+        box-shadow:none;
+    }
+}
+
+@mixin placeholder($color, $align: left) {
+    color: $color;
+    border-bottom: 1px solid $color !important;
+
+    &::-webkit-input-placeholder {
+        color: lighten($color, 20%);
+        text-align: $align;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+        color: lighten($color, 20%);
+        text-align: $align;
+    }
+    &::-moz-placeholder {  /* Firefox 19+ */
+        color: lighten($color, 20%);
+        text-align: $align;
+    }
+    &:-ms-input-placeholder {
+        color: lighten($color, 20%);
+        text-align: $align;
+    }
+}
+
+.search-out-text {
+    @include placeholder(#000);
+}
+
+input.search-out-text {
+    margin: 5px 0 10px 0;
+}
+
+nav {
+    background: color("yellow", "base");
+}
+
+nav.top-nav {
+    background: color("yellow", "darken-4");
+}
+
+footer.page-footer {
+    background: color("yellow", "base");
+    margin: 0;
+    a {
+        color: black;
+        i.fa {
+            vertical-align: middle;
+        }
+    }
+    .footer-copyright {
+        .container {
+            color: black;
+        }
+    }
+}
+
+nav ul a,
+nav .brand-logo {
+    color: #444;
+    img {
+        vertical-align: middle;
+        width: 70%;
+        height: 70%;
+    }
+}
+
+p {
+    line-height: 2rem;
+}
+
+.button-collapse {
+    color: #000;
+}
+
+#index,
+#about,
+#code-404 {
+    .parallax-container {
+        min-height: 380px;
+        line-height: 0;
+        height: auto;
+        color: rgba(255,255,255,.9);
+
+        .section {
+            width: 100%;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+        }
+
+        h1 {
+            font-size: 4.6em;
+            font-weight: bold;
+        }
+
+        h1.twoline {
+            line-height: 1.6em;
+        }
+
+        h5 {
+            font-size: 2.2em;
+            font-weight: bold;
+            line-height: 1.6em;
+        }
+
+        .parallax img {
+            filter: blur(2px);
+        }
+    }
+}
+
+.icon-block {
+    padding: 0 15px;
+    .material-icons {
+        font-size: inherit;
+    }
+}
+
+/**
+ * /login
+ */
+#login {
+    /**
+     * http://designify.me/tutorials/how-to-create-a-beautiful-material-design-login-form-with-html-css/
+     */
+
+    $login_bg:      color("yellow", "darken-2");
+    $login_fg:      color("grey",   "darken-2");
+    $login_invalid: color("red",    "darken-2");
+    $login_valid:   color("green",  "darken-2");
+
+    .parallax-container {
+        .section {
+            width: 100%;
+        }
+
+        .parallax img {
+            filter: blur(2px);
+        }
+    }
+
+    form {
+        box-sizing: border-box;
+        width: 300px;
+        margin: 50px auto 50px;
+        box-shadow: 2px 2px 5px 1px rgba(0, 0, 0, 0.2);
+        padding-bottom: 40px;
+        border-radius: 3px;
+
+        h1 {
+            height: 60px;
+            width: 100%;
+            font-size: 18px;
+            background: $login_bg;
+            color: $login_fg;
+            line-height: 150%;
+            border-radius: 3px 3px 0 0;
+            box-shadow: 0 2px 5px 1px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            padding: 20px;
+        }
+
+        button {
+            border: none;
+            background: $login_bg;
+            cursor: pointer;
+            width: 240px;
+            color: $login_fg;
+            margin-left: 25px;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .input-field {
+            input {
+                margin: 30px 25px;
+                width: 240px;
+                display: block;
+            }
+
+            label {
+                left: 30px;
+            }
+
+            /**
+             * Forms - Changing colors
+             * http://materializecss.com/forms.html
+             */
+            /* label color */
+            label {
+                color: $login_bg;
+            }
+            input {
+                border-bottom: 1px solid $login_bg;
+            }
+            /* label focus color */
+            input[type=text]:focus + label,
+            input[type=email]:focus + label,
+            input[type=password]:focus + label {
+                color: $login_bg;
+            }
+            /* label underline focus color */
+            input[type=text]:focus,
+            input[type=email]:focus,
+            input[type=password]:focus {
+                border-bottom: 1px solid $login_bg;
+                box-shadow: 0 1px 0 0 $login_bg;
+            }
+            /* valid color */
+            input[type=text].valid,
+            input[type=email].valid,
+            input[type=password].valid {
+                border-bottom: 1px solid $login_valid;
+                box-shadow: 0 1px 0 0 $login_valid;
+            }
+            /* invalid color */
+            input[type=text].invalid,
+            input[type=email].invalid,
+            input[type=password].invalid {
+                border-bottom: 1px solid $login_invalid;
+                box-shadow: 0 1px 0 0 $login_invalid;
+            }
+            /* icon prefix focus color */
+            .prefix.active {
+                color: $login_bg;
+            }
+        }
+    }
+}

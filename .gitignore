@@ -1,0 +1,48 @@
+blib/
+.build/
+_build/
+cover_db/
+inc/
+Build
+Build.bat
+.last_cover_stats
+Makefile
+Makefile.old
+MANIFEST.bak
+META.yml
+MYMETA.yml
+nytprof.out
+pm_to_blib
+
+# dzil generated files
+OpenCloset-Story-Web-*
+
+# editor swap files
+*.swp
+
+# darkpan auth file
+.pause
+
+# tidyall
+.tidyall.d/
+
+# Dist::Zilla::Plugin::Git::NextVersion
+.gitnxtver_cache
+
+# package generated files: Mojolicious setup
+opencloset-story-web.conf
+
+# package generated files: bower
+.bowerrc
+bower.json
+assets/vendor/
+
+# package generated files: Mojolicious::Plugin::AssetPack
+assets/assetpack.db
+assets/cache/
+
+# package generated files: fonts & etc
+assets/asset/fonts
+
+# sass
+.sass-cache/

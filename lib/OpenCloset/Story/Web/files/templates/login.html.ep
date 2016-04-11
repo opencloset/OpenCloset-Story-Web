@@ -1,0 +1,31 @@
+% my $_id = "login";
+% layout "default", page_id => $_id, page_title_short => $page->{$_id}{title_short};
+% title $page->{$_id}{title};
+
+  <div class="parallax-container valign-wrapper">
+    <div class="section no-pad-bot">
+      <div class="container">
+
+        <form action="<%= url_for("/login") %>" method="post">
+          <h1><%= $site->{name} %> 로그인</h1>
+
+          <div class="input-field col s12">
+            <input id="email" name="email" type="email" required="" class="validate">
+            <label for="email">전자 우편</label>
+          </div>
+          <div class="input-field col s12">
+            <input id="password" name="password" type="password" required="" class="validate">
+            <label for="password">비밀번호</label>
+          </div>
+          <input id="from" name="from" type="hidden" value="<%= $from %>">
+
+          <button class="btn waves-effect waves-light" type="submit" name="action">
+            로그인
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="/img/background1.jpg" alt="Unsplashed background img 1"></div>
+  </div>

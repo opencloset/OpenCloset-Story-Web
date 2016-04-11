@@ -1,0 +1,120 @@
+% my $user = current_user;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+  <link rel="icon" type="image/png" href="<%= url_for("/img/icon.png") %>" />
+  <title><%= title %> - <%= $site->{name} %></title>
+
+  <!-- CSS  -->
+  %= asset "app.css";
+</head>
+<body>
+  <nav role="navigation">
+    <div class="nav-wrapper container">
+      <a id="logo-container" href="<%= url_for("/") %>" class="brand-logo"> <img src="<%= url_for("/img/logo.png") %>"> </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light show-search"><i class="material-icons">search</i></a></li>
+        <li class="search-out"><input type="text" class="search-out-text" placeholder="무엇을 찾으시나요?"></li>
+
+        <li class="<%= $page_id eq "about" ? "active" : q{} %>"><a href="<%= url_for("/about")  %>" class="waves-effect waves-block waves-light">소개</i></a></li>
+        % if ($user) {
+          <li><a href="<%= url_for("/logout")  %>" class="waves-effect waves-block waves-light">로그아웃</i></a></li>
+        % }
+        % else {
+          <li class="<%= $page_id eq "login" ? "active" : q{} %>"><a href="<%= url_for("/login")  %>" class="waves-effect waves-block waves-light">로그인</i></a></li>
+          <li class="<%= $page_id eq "signup" ? "active" : q{} %>"><a href="<%= url_for("/signup") %>" class="waves-effect waves-block waves-light">가입</i></a></li>
+        % }
+      </ul>
+      <ul id="nav-mobile" class="side-nav">
+        <li class="<%= $page_id eq "about" ? "active" : q{} %>"><a href="<%= url_for("/about")  %>" class="waves-effect waves-block waves-light">소개</i></a></li>
+        % if ($user) {
+          <li><a href="<%= url_for("/logout")  %>" class="waves-effect waves-block waves-light">로그아웃</i></a></li>
+        % }
+        % else {
+          <li class="<%= $page_id eq "login" ? "active" : q{} %>"><a href="<%= url_for("/login")  %>" class="waves-effect waves-block waves-light">로그인</i></a></li>
+          <li class="<%= $page_id eq "signup" ? "active" : q{} %>"><a href="<%= url_for("/signup") %>" class="waves-effect waves-block waves-light">가입</i></a></li>
+        % }
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  % my $page_info = $page->{$page_id};
+  % if ( @{ $page_info->{breadcrumb} } ) {
+    <nav class="top-nav">
+      <div class="container">
+        <div class="nav-wrapper">
+          <div class="col s12">
+  %   for my $pid ( @{ $page_info->{breadcrumb} } ) {
+  %     my $url         = $page->{$pid}{url} ? url_for( $page->{$pid}{url} ) : "#";
+  %     my $title_short = ( $page_title_short && $pid eq $page_id ) ? $page_title_short : $page->{$pid}{title_short};
+            <a href="<%= $url || "#" %>" class="breadcrumb"><%= $title_short %></a>
+  %   }
+          </div>
+        </div>
+      </div>
+    </nav>
+  % }
+
+  <div id="<%= $page_id %>">
+    <%= content %>
+  </div>
+
+  <footer class="page-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5>열린옷장</h5>
+          <p>
+            사단법인 열린옷장 | 이사장 한만일
+            <br />
+            개인정보관리책임자 김소령
+            <br />
+            사업자등록번호 498-82-00028
+            <br />
+            서울특별시 공유단체 제26호
+            <br />
+            통신판매업신고번호 2016-서울광진-0004
+            <br />
+            전자우편 info@theopencloset.net
+            <br />
+            전화 070-4325-7521
+          </p>
+        </div>
+        <div class="col l3 s12">
+          <h5>링크</h5>
+          <ul>
+            % for my $link (@$links) {
+              <li><a href="<%= $link->{url} %>"><%= $link->{name} %></a></li>
+            % }
+          </ul>
+        </div>
+        <div class="col l3 s12">
+          <h5>Connect</h5>
+          <ul>
+            <li><a href="https://twitter.com/openclosetnet"><i class="fa fa-2x fa-twitter-square"></i> 트위터</a></li>
+            <li><a href="https://www.facebook.com/TheOpenCloset/"><i class="fa fa-2x fa-facebook-square"></i> 페이스북</a></li>
+            <li><a href="https://www.instagram.com/opencloset_story/"><i class="fa fa-2x fa-instagram"></i> 인스타그램</a></li>
+            <li><a href="http://theopencloset.tistory.com"><i class="fa fa-2x fa-rss-square"></i> RSS 구독</a></li>
+            <li><a href="https://github.com/opencloset/"><i class="fa fa-2x fa-github-square"></i> GitHub</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container">
+        &copy; <%= $copyright %>. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!--  Scripts-->
+  %= asset "app.js";
+  % if ( asset->processed("$page_id.js") ) {
+    %= asset "$page_id.js";
+  % }
+
+  </body>
+</html>
