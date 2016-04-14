@@ -392,3 +392,80 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
         }
     }
 }
+
+/*
+ * each card
+ */
+#letters-d-id {
+    .cards-container {
+        .card.notepad {
+            font-family: "Nanum Pen Script", cursive;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 50px rgba(0, 0, 0, 0.1);
+            transform: rotate(-0.5deg);
+            -ms-transform: rotate(-0.5deg);
+            -moz-transform: rotate(-0.5deg);
+            -o-transform: rotate(-0.5deg);
+            -webkit-transform: rotate(-0.5deg);
+            background: #fcf59b;
+                background:
+                        -webkit-gradient(
+                                linear,
+                                left top, left bottom,
+                                from(#81cbbc),
+                                color-stop(2%, #fcf59b)
+                        );
+                background:
+                        -moz-repeating-linear-gradient(
+                                top,
+                                #fcf59b,
+                                #fcf59b 38px,
+                                #81cbbc 40px
+                        );
+                background:
+                        repeating-linear-gradient(
+                                top,
+                                #fcf59b,
+                                #fcf59b 38px,
+                                #81cbbc 40px
+                        );
+                -webkit-background-size: 100% 40px;
+
+            @media #{$small-and-down} {
+                .card-content {
+                    p {
+                        font-size: 2.4em;
+                        line-height: 160%;
+                    }
+                }
+                padding: 10px 20px;
+                margin: 30px auto;
+                min-height: 400px;
+            }
+
+            @media #{$medium-and-up} {
+                .card-content {
+                    p {
+                        font-size: 2.4em;
+                        line-height: 160%;
+                    }
+                }
+                padding: 20px 40px;
+                margin: 30px auto;
+                min-height: 600px;
+            }
+
+            @media #{$large-and-up} {
+                .card-content {
+                    p {
+                        font-size: 3em;
+                        line-height: 180%;
+                    }
+                }
+                padding: 70px 80px;
+                margin: 40px auto;
+                min-height: 800px;
+            }
+
+        }
+    }
+}

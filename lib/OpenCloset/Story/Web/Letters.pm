@@ -99,6 +99,58 @@ sub donation_post {
     );
 }
 
+sub donation_id_get {
+    my $self = shift;
+
+    my $id = $self->param("id");
+
+    my $next_donation_id;
+    {
+        my $donation = $self->schema->resultset("Donation")->search(
+            {
+                -and => [
+                    { "me.message" => { "!=" => undef } },
+                    { "me.message" => { "!=" => q{} } },
+                    { "me.id"      => { "<"  => $id } },
+                ],
+            },
+            {
+                order_by => { -desc => "id" },
+                rows     => $1,
+            },
+        )->first;
+        $next_donation_id = $donation->id if $donation;
+    }
+
+    my $prev_donation_id;
+    {
+        my $donation = $self->schema->resultset("Donation")->search(
+            {
+                -and => [
+                    { "me.message" => { "!=" => undef } },
+                    { "me.message" => { "!=" => q{} } },
+                    { "me.id"      => { ">"  => $id } },
+                ],
+            },
+            {
+                order_by => { -asc => "id" },
+                rows     => $1,
+            },
+        )->first;
+        $prev_donation_id = $donation->id if $donation;
+    }
+
+    my $donation = $self->schema->resultset("Donation")->find($id);
+    return $self->reply->not_found unless $donation;
+
+    $self->render(
+        template         => "letters-d-id",
+        donation         => $donation,
+        next_donation_id => $next_donation_id,
+        prev_donation_id => $prev_donation_id,
+    );
+}
+
 sub order_get {
     my $self = shift;
 

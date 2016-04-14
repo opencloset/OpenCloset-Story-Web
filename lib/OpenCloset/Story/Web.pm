@@ -207,6 +207,18 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-d-id" => {
+                                title       => "%s님의 기증 이야기",
+                                title_short => "%s님",
+                                url         => "/letters/d/%s",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-d
+                                        letters-d-id
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -304,6 +316,7 @@ sub startup {
     $r->get("/letters/d")->to("letters#donation_get");
     $r->get("/letters/d/scroll")->to("letters#donation_scroll_get");
     $r->post("/letters/d")->to("letters#donation_post");
+    $r->get("/letters/d/:id")->to("letters#donation_id_get");
 
     $r->get("/letters/o")->to("letters#order_get");
     $r->get("/letters/o/scroll")->to("letters#order_scroll_get");
