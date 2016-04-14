@@ -1,6 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - Update module dependency
+        - Mojolicious::Plugin::AssetPack 1.04
+        - OpenCloset::Schema 0.027
 
 0.001     2016-04-14 18:52:59+09:00 Asia/Seoul
     - first release (alpha release 1)
