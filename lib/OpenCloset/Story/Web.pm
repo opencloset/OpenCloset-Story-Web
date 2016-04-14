@@ -75,6 +75,8 @@ sub _load_config {
     my $db_password = $app->db_password;
 
     $app->defaults(
+        page_title_short => q{},
+        q                => q{},
         %{
             $app->plugin(
                 Config => {
@@ -183,6 +185,76 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-d" => {
+                                title       => "기증 이야기",
+                                title_short => "기증 이야기",
+                                url         => "/letters/d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-d
+                                        /
+                                ],
+                            },
+                            "letters-o" => {
+                                title       => "대여 이야기",
+                                title_short => "대여 이야기",
+                                url         => "/letters/o",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-o
+                                        /
+                                ],
+                            },
+                            "letters-d-id" => {
+                                title       => "%s님의 기증 이야기",
+                                title_short => "%s님",
+                                url         => "/letters/d/%s",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-d
+                                        letters-d-id
+                                        /
+                                ],
+                            },
+                            "letters-o-id" => {
+                                title       => "%s님의 대여 이야기",
+                                title_short => "%s님",
+                                url         => "/letters/o/%s",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-o
+                                        letters-o-id
+                                        /
+                                ],
+                            },
+                            "letters-d-id-o" => {
+                                title       => "대여자 분들께서 %s님께 보내는 감사 이야기",
+                                title_short => "%s님께 보내는 감사 이야기",
+                                url         => "/letters/d/%s/o",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-o
+                                        letters-d-id-o
+                                        /
+                                ],
+                            },
+                            "letters-o-id-d" => {
+                                title       => "기증자 분들께서 %s님께 보내는 응원 이야기",
+                                title_short => "%s님께 보내는 응원 이야기",
+                                url         => "/letters/o/%s/d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-d
+                                        letters-o-id-d
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -276,6 +348,18 @@ sub startup {
     #
     $r->get("/")->to("root#index_get");
     $r->get("/about")->to("root#about_get");
+
+    $r->get("/letters/d")->to("letters#donation_get");
+    $r->get("/letters/d/scroll")->to("letters#donation_scroll_get");
+    $r->post("/letters/d")->to("letters#donation_post");
+    $r->get("/letters/d/:id")->to("letters#donation_id_get");
+    $r->get("/letters/d/:id/o")->to("letters#donation_id_order_get");
+
+    $r->get("/letters/o")->to("letters#order_get");
+    $r->get("/letters/o/scroll")->to("letters#order_scroll_get");
+    $r->post("/letters/o")->to("letters#order_post");
+    $r->get("/letters/o/:id")->to("letters#order_id_get");
+    $r->get("/letters/o/:id/d")->to("letters#order_id_donation_get");
 
     my $if_auth = $r->under(
         sub {

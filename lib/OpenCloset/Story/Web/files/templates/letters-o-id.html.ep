@@ -1,0 +1,59 @@
+% my $_id          = "letters-o-id";
+% my $_title       = sprintf( $page->{$_id}{title}, $order->user->name );
+% my $_title_short = sprintf( $page->{$_id}{title_short}, $order->user->name );
+% layout "default", page_id => $_id, page_title_short => $_title_short;
+% title $_title;
+
+% use Mojo::Util qw( xml_escape );
+% my $message = xml_escape $order->message;
+% $message =~ s/\n/<br>\n/g;
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+
+        <div class="col s12">
+          % if ($prev_order_id) {
+            <a href="<%= url_for("/letters/o/$prev_order_id") %>" class="yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>
+          % }
+          % else {
+            <a class="disabled yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>
+          % }
+          % if ($next_order_id) {
+            <a href="<%= url_for("/letters/o/$next_order_id") %>" class="yellow black-text waves-effect waves-light btn right"><i class="fa fa-arrow-right right"></i>다음</a>
+          % }
+          % else {
+            <a class="disabled yellow black-text waves-effect waves-light btn right"><i class="fa fa-arrow-right right"></i>다음</a>
+          % }
+        </div>
+
+        <div class="col s12 cards-container">
+          <div class="card white lighten-4 notepad">
+            <div class="card-content black-text">
+              <p>
+                <%== $message  %>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="col s12">
+          % if ($prev_order_id) {
+            <a href="<%= url_for("/letters/o/$prev_order_id") %>" class="yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>
+          % }
+          % else {
+            <a class="disabled yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>
+          % }
+          % if ($next_order_id) {
+            <a href="<%= url_for("/letters/o/$next_order_id") %>" class="yellow black-text waves-effect waves-light btn right"><i class="fa fa-arrow-right right"></i>다음</a>
+          % }
+          % else {
+            <a class="disabled yellow black-text waves-effect waves-light btn right"><i class="fa fa-arrow-right right"></i>다음</a>
+          % }
+        </div>
+
+      </div>
+
+    </div>
+  </div>

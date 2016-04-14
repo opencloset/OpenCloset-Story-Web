@@ -2,18 +2,134 @@
 % layout "default", page_id => $_id, page_title_short => $page->{$_id}{title_short};
 % title $page->{$_id}{title};
 
-  <div class="parallax-container valign-wrapper">
+  <div id="index-banner" class="parallax-container custom">
     <div class="section no-pad-bot">
       <div class="container">
-        <h1 class="header center yellow-text text-lighten-2">열린옷장</h1>
+        <h1 class="header center yellow-text text-lighten-2">이야기 옷장</h1>
         <div class="row center">
           <h5 class="header col s12 light">
-            정장을 통해 마음을 나눕니다
+            정장을 통해 마음을 나누는
+            <br>
+            열린옷장 속 이야기 옷장입니다.
+          </h5>
+        </div>
+        <div class="row center">
+          <a href="<%= url_for("/letters/d") %>" id="download-button" class="btn-large waves-effect waves-light yellow white-text darken-4">
+            <span class="count"><%= $donation_count %></span>개의
+            기증 이야기
+          </a>
+          <a href="<%= url_for("/letters/o") %>" id="download-button" class="btn-large waves-effect waves-light yellow white-text darken-4">
+            <span class="count"><%= $order_count %></span>개의
+            대여 이야기
+          </a>
+        </div>
+        <br><br>
+
+      </div>
+    </div>
+    <div class="parallax"><img src="/img/background1.jpg" alt="Unsplashed background img 1"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="fa fa-heart yellow-text text-darken-3"></i></h3>
+          <h4>열린옷장 속 이야기옷장</h4>
+          <p class="left-align light">
+            한 벌의 옷이 기증되면 한 사람의 이야기가 함께 기증됩니다.
+            그 옷을 누군가 입을 때마다 새로운 사연이 소복소복 쌓여갑니다.
+            그래서 열린옷장의 모든 옷은 수많은 이야기를 품고 있습니다.
+            기증자가 보내온 옷에 담긴 추억과 경험, 그리고 응원...
+            대여자가 전하는 감사의 마음과 꿈을 향한 설렘의 메시지...
+            여기, 이야기옷장에서 맘껏 공유하고 공감해주세요.
+            많이 나눌수록 우리는 더 따뜻하고 행복해질 거라고 열린옷장은 이야기의 힘을 믿습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper custom">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light white-text text-lighten-2">
+            열린옷장의 모든 옷은
+            <br>
+            수많은 이야기를 품고 있습니다
           </h5>
         </div>
       </div>
     </div>
-    <div class="parallax"><img src="/img/background1.jpg" alt="Unsplashed background img 1"></div>
+    <div class="parallax"><img src="/img/background2.jpg" alt="Unsplashed background img 2"></div>
+  </div>
+
+  <div class="container">
+    <div class="section">
+
+      <!--   Icon Section   -->
+      <div class="row">
+        <div class="col s12 center">
+          <h3><i class="fa fa-envelope yellow-text text-darken-3"></i></h3>
+          <h4>이야기 옷장 읽는 방법</h4>
+        </div>
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">card_giftcard</i></h2>
+            <h5 class="center">기증자</h5>
+            <p class="light">
+              내 이름을 검색하여 옷과 함께 보냈던 나의 기증이야기를 찾아보세요.
+              % if (0) {
+              나의 기증의류를 입었던 대여자들이 보내온 감사편지를 만나볼 수 있습니다.
+              % }
+            </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">face</i></h2>
+            <h5 class="center">대여자</h5>
+            <p class="light">
+              내 이름을 검색하여 내가 썼던 이야기들을 만나보세요.
+              % if (0) {
+              기증자에게 감사편지를 쓰거나 내가 썼던 이야기들을 만나볼 수 있습니다.
+              % }
+            </p>
+          </div>
+        </div>
+
+        <div class="col s12 m4">
+          <div class="icon-block">
+            <h2 class="center brown-text"><i class="material-icons">group</i></h2>
+            <h5 class="center">누구나</h5>
+            <p class="light">
+              열린옷장의 기증자와 대여자들이 보내온 수많은 이야기들을 읽어보세요.
+              % if (0) {
+              감동을 나누고 싶을 때 댓글로 메시지를 전할 수 있습니다.
+              % }
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="parallax-container valign-wrapper custom">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <div class="row center">
+          <h5 class="header col s12 light white-text text-lighten-2">
+            옷장 속에서 먼지만 쌓여가던 한 벌의 정장이
+            <br>
+            세상 밖으로 나오게 된다면 어떤 일이 일어날까요?
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/img/background3.jpg" alt="Unsplashed background img 3"></div>
   </div>
 
   <div class="container">
@@ -35,4 +151,17 @@
         </div>
       </div>
     </div>
+  </div>
+
+  <div id="last-banner" class="parallax-container valign-wrapper custom">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h1 class="header center white-text text-lighten-2 twoline">
+          여러분의 옷장을
+          <br>
+          열어주세요
+        </h1>
+      </div>
+    </div>
+    <div class="parallax"><img src="/img/background4.jpg" alt="Unsplashed background img 4"></div>
   </div>

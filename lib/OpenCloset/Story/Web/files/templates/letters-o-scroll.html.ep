@@ -1,0 +1,22 @@
+% if ( $order_rs && $order_rs->count ) {
+%   while ( my $order = $order_rs->next ) {
+  <div class="card">
+    <div class="ribbon<%= $order->pass ? " employment" : q{} %>"></div>
+    <div class="card-content black-text">
+      <p>
+        % my $message = substr( $order->message, 0, $preview_size );
+        <%= $message  %>
+        % if ( length($message) < length($order->message) ) {
+        …
+        % }
+      </p>
+    </div>
+    <div class="card-action">
+      <a href="<%= url_for("/letters/o/" . $order->id) %>"><span class="user-name"><%= $order->user->name %></span>님 대여 이야기 더 읽기 <i class="fa fa-arrow-right"></i></a>
+      <br>
+      <a href="<%= url_for("/letters/o/" . $order->id . "/d") %>"><span class="user-name"><%= $order->user->name %></span>님께 보내는 응원 읽기 <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+%   }
+  <a class="scroll" href="<%= url_for("/letters/o/scroll")->query( page => $page + 1 ) %>">더 불러오기</a>
+% }

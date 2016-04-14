@@ -1,0 +1,72 @@
+% my $_id          = "letters-d-id-o";
+% my $_title       = sprintf( $page->{$_id}{title}, $donation->user->name );
+% my $_title_short = sprintf( $page->{$_id}{title_short}, $donation->user->name );
+% layout "default", page_id => $_id, page_title_short => $_title_short;
+% title $_title;
+
+% my %category_to_str = (
+%   jacket    => "재킷",
+%   pants     => "바지",
+%   skirt     => "치마",
+%   shirt     => "셔츠",
+%   blouse    => "블라우스",
+%   shoes     => "신발",
+%   tie       => "넥타이",
+%   onepiece  => "원피스",
+%   coat      => "코트",
+%   waistcoat => "조끼",
+%   belt      => "벨트",
+%   bag       => "가방",
+% );
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <div class="col s12 cards-container">
+          <div class="card blue-grey darken-1">
+            <div class="card-content white-text">
+              <span class="card-title"><%= $_title %></span>
+            </div>
+          </div>
+        </div>
+
+        % if ($order_info) {
+          <div class="col s12 cards-container letters">
+            % for my $o_id ( reverse sort { $a <=> $b } keys %$order_info ) {
+            %   my $order         = $order_info->{$o_id}{obj};
+            %   my $category_list = $order_info->{$o_id}{category};
+              <div class="card">
+                <div class="card-content black-text">
+                  <p>
+                    % my $first_line = sprintf(
+                    %   "%s님께서 대여하신 %s",
+                    %   $order->user->name,
+                    %   join( q{, }, map $category_to_str{$_}, @$category_list ),
+                    % );
+                    <%= $first_line %>
+                  </p>
+                  <p>
+                    % if ( $order->message ) {
+                    %   my $message = substr( $order->message, 0, $preview_size );
+                    <%= $message  %>
+                    %   if ( length($message) < length($order->message) ) {
+                    …
+                    %   }
+                    % }
+                  </p>
+                </div>
+                % if ( $order->message ) {
+                  <div class="card-action">
+                    <a href="<%= url_for("/letters/o/" . $order->id) %>"><span class="user-name"><%= $order->user->name %></span>님 감사 이야기 더 읽기 <i class="fa fa-arrow-right"></i></a>
+                  </div>
+                % }
+              </div>
+            % }
+          </div>
+        % }
+
+      </div>
+
+    </div>
+  </div>

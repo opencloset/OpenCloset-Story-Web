@@ -1,0 +1,64 @@
+% my $_id = "letters-o";
+% layout "default", page_id => $_id;
+% title $page->{$_id}{title};
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <form action="<%= url_for("/letters/o") %>" method="post">
+          <div class="col s12 m6 offset-m3 l6 offset-l3 input-field">
+            <i class="material-icons prefix">search</i>
+            <input id="q" name="q" type="text" class="validate" value="<%= $q %>">
+            <label for="q">이름이나 전화번호로 이야기를 찾아보세요.</label>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+
+        % if ( $order_rs && $order_rs->count ) {
+          <div class="col s12 cards-container letters">
+            % while ( my $order = $order_rs->next ) {
+              <div class="card">
+                <div class="ribbon<%= $order->pass ? " employment" : q{} %>"></div>
+                <div class="card-content black-text">
+                  <p>
+                    % my $message = substr( $order->message, 0, $preview_size );
+                    <%= $message  %>
+                    % if ( length($message) < length($order->message) ) {
+                    …
+                    % }
+                  </p>
+                </div>
+                <div class="card-action">
+                  <a href="<%= url_for("/letters/o/" . $order->id) %>"><span class="user-name"><%= $order->user->name %></span>님 대여 이야기 더 읽기 <i class="fa fa-arrow-right"></i></a>
+                  <br>
+                  <a href="<%= url_for("/letters/o/" . $order->id . "/d") %>"><span class="user-name"><%= $order->user->name %></span>님께 보내는 응원 읽기 <i class="fa fa-arrow-right"></i></a>
+                </div>
+              </div>
+            % }
+            % unless ($q) {
+              <a class="scroll" href="<%= url_for("/letters/o/scroll")->query( page => 2 ) %>">더 불러오기</a>
+            % }
+
+          </div>
+        % }
+        % else {
+          <div class="col s12 cards-container">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">이야기를 찾을 수 없습니다.</span>
+                <p>
+                  입력하신 이름이나 전화번호에 해당하는 이야기를 찾을 수 없습니다.
+                  대여자께서 편지를 남겨주시지 않은 경우는 이야기를 찾을 수 없습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        % }
+
+      </div>
+
+    </div>
+  </div>

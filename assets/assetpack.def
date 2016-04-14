@@ -47,6 +47,16 @@
 <  /vendor/Materialize/js/character_counter.js
 <  /vendor/Materialize/js/carousel.js
 #
+# jscroll
+#
+<  /vendor/jscroll/jquery.jscroll.min.js
+#
 # coffee
 #
 <  /coffee/main.coffee
+
+!  letters-d.js
+<  /coffee/letters-d.coffee
+
+!  letters-o.js
+<  /coffee/letters-o.coffee

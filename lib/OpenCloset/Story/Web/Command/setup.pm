@@ -57,7 +57,8 @@ END_CONTENT
   "name": "opencloset-story-web",
   "dependencies": {
     "Materialize": "materialize#~0.97.6",
-    "fontawesome": "~4.5.0"
+    "fontawesome": "~4.5.0",
+    "jscroll": "~2.3.4"
   }
 }
 END_CONTENT
@@ -145,9 +146,19 @@ END_CONTENT
 <  /vendor/Materialize/js/character_counter.js
 <  /vendor/Materialize/js/carousel.js
 #
+# jscroll
+#
+<  /vendor/jscroll/jquery.jscroll.min.js
+#
 # coffee
 #
 <  /coffee/main.coffee
+
+!  letters-d.js
+<  /coffee/letters-d.coffee
+
+!  letters-o.js
+<  /coffee/letters-o.coffee
 END_CONTENT
         path($conf)->spew_utf8($content);
     }
