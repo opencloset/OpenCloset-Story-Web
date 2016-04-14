@@ -255,6 +255,60 @@ sub order_post {
     );
 }
 
+sub order_id_get {
+    my $self = shift;
+
+    my $id = $self->param("id");
+
+    my $next_order_id;
+    {
+        my $order = $self->schema->resultset("Order")->search(
+            {
+                -and => [
+                    { "me.message"     => { "!=" => undef } },
+                    { "me.message"     => { "!=" => q{} } },
+                    { "me.return_date" => { "!=" => undef } },
+                    { "me.id"          => { "<"  => $id } },
+                ],
+            },
+            {
+                order_by => { -desc => "id" },
+                rows     => $1,
+            },
+        )->first;
+        $next_order_id = $order->id if $order;
+    }
+
+    my $prev_order_id;
+    {
+        my $order = $self->schema->resultset("Order")->search(
+            {
+                -and => [
+                    { "me.message"     => { "!=" => undef } },
+                    { "me.message"     => { "!=" => q{} } },
+                    { "me.return_date" => { "!=" => undef } },
+                    { "me.id"          => { ">"  => $id } },
+                ],
+            },
+            {
+                order_by => { -asc => "id" },
+                rows     => $1,
+            },
+        )->first;
+        $prev_order_id = $order->id if $order;
+    }
+
+    my $order = $self->schema->resultset("Order")->find($id);
+    return $self->reply->not_found unless $order;
+
+    $self->render(
+        template      => "letters-o-id",
+        order         => $order,
+        next_order_id => $next_order_id,
+        prev_order_id => $prev_order_id,
+    );
+}
+
 1;
 
 __END__

@@ -219,6 +219,18 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-o-id" => {
+                                title       => "%s님의 대여 이야기",
+                                title_short => "%s님",
+                                url         => "/letters/o/%s",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-o
+                                        letters-o-id
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -321,6 +333,7 @@ sub startup {
     $r->get("/letters/o")->to("letters#order_get");
     $r->get("/letters/o/scroll")->to("letters#order_scroll_get");
     $r->post("/letters/o")->to("letters#order_post");
+    $r->get("/letters/o/:id")->to("letters#order_id_get");
 
     my $if_auth = $r->under(
         sub {
