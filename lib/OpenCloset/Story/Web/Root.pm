@@ -3,7 +3,7 @@ package OpenCloset::Story::Web::Root;
 
 use Mojo::Base "Mojolicious::Controller";
 
-our $VERSION = '0.002';
+our $VERSION = '0.003';
 
 sub index_get {
     my $self = shift;
