@@ -18,6 +18,7 @@
         <li><a href="javascript:void(0);" class="waves-effect waves-block waves-light show-search"><i class="material-icons">search</i></a></li>
         <li class="search-out"><input type="text" class="search-out-text" placeholder="무엇을 찾으시나요?"></li>
 
+        <li class="<%= $page_id eq "letters-d" ? "active" : q{} %>"><a href="<%= url_for("/letters/d") %>" class="waves-effect waves-block waves-light">기증 이야기</i></a></li>
         <li class="<%= $page_id eq "about" ? "active" : q{} %>"><a href="<%= url_for("/about")  %>" class="waves-effect waves-block waves-light">소개</i></a></li>
         % if ($user) {
           <li><a href="<%= url_for("/logout")  %>" class="waves-effect waves-block waves-light">로그아웃</i></a></li>
@@ -28,6 +29,7 @@
         % }
       </ul>
       <ul id="nav-mobile" class="side-nav">
+        <li class="<%= $page_id eq "letters-d" ? "active" : q{} %>"><a href="<%= url_for("/letters/d") %>" class="waves-effect waves-block waves-light">기증 이야기</i></a></li>
         <li class="<%= $page_id eq "about" ? "active" : q{} %>"><a href="<%= url_for("/about")  %>" class="waves-effect waves-block waves-light">소개</i></a></li>
         % if ($user) {
           <li><a href="<%= url_for("/logout")  %>" class="waves-effect waves-block waves-light">로그아웃</i></a></li>

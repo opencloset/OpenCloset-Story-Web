@@ -75,6 +75,8 @@ sub _load_config {
     my $db_password = $app->db_password;
 
     $app->defaults(
+        page_title_short => q{},
+        q                => q{},
         %{
             $app->plugin(
                 Config => {
@@ -183,6 +185,17 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-d" => {
+                                title       => "기증 이야기",
+                                title_short => "기증 이야기",
+                                url         => "/letters/d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-d
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -276,6 +289,10 @@ sub startup {
     #
     $r->get("/")->to("root#index_get");
     $r->get("/about")->to("root#about_get");
+
+    $r->get("/letters/d")->to("letters#donation_get");
+    $r->get("/letters/d/scroll")->to("letters#donation_scroll_get");
+    $r->post("/letters/d")->to("letters#donation_post");
 
     my $if_auth = $r->under(
         sub {

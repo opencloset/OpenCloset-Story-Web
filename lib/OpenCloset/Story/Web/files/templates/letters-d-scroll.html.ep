@@ -1,0 +1,21 @@
+% if ( $donation_rs && $donation_rs->count ) {
+%   while ( my $donation = $donation_rs->next ) {
+  <div class="card">
+    <div class="card-content black-text">
+      <p>
+        % my $message = substr( $donation->message, 0, $preview_size );
+        <%= $message  %>
+        % if ( length($message) < length($donation->message) ) {
+        …
+        % }
+      </p>
+    </div>
+    <div class="card-action">
+      <a href="<%= url_for("/letters/d/" . $donation->id) %>"><span class="user-name"><%= $donation->user->name %></span>님 기증 이야기 더 읽기 <i class="fa fa-arrow-right"></i></a>
+      <br>
+      <a href="<%= url_for("/letters/d/" . $donation->id . "/o") %>"><span class="user-name"><%= $donation->user->name %></span>님께 드리는 감사 더 읽기 <i class="fa fa-arrow-right"></i></a>
+    </div>
+  </div>
+%   }
+  <a class="scroll" href="<%= url_for("/letters/d/scroll")->query( page => $page + 1 ) %>">더 불러오기</a>
+% }
