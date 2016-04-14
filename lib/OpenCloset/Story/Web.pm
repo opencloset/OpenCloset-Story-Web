@@ -196,6 +196,17 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-o" => {
+                                title       => "대여 이야기",
+                                title_short => "대여 이야기",
+                                url         => "/letters/o",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-o
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -293,6 +304,10 @@ sub startup {
     $r->get("/letters/d")->to("letters#donation_get");
     $r->get("/letters/d/scroll")->to("letters#donation_scroll_get");
     $r->post("/letters/d")->to("letters#donation_post");
+
+    $r->get("/letters/o")->to("letters#order_get");
+    $r->get("/letters/o/scroll")->to("letters#order_scroll_get");
+    $r->post("/letters/o")->to("letters#order_post");
 
     my $if_auth = $r->under(
         sub {

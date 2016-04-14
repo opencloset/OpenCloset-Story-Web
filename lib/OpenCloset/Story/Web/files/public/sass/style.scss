@@ -285,6 +285,7 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
     column-count: $ct;
 }
 
+#letters-o,
 #letters-d {
     .cards-container.letters {
         column-break-inside: avoid;
@@ -315,6 +316,7 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
 /*
  * card decoration
  */
+#letters-o,
 #letters-d {
     .cards-container.letters {
         .card {
@@ -339,11 +341,23 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
     }
 }
 
+#letters-o {
+    .cards-container.letters {
+        .card:nth-child(2n) {
+            background-color: color("yellow", "lighten-4");
+        }
+        .card:nth-child(2n+1) {
+            background-color: color("yellow", "lighten-2");
+        }
+    }
+}
+
 $card-link-color: color("blue-grey", "darken-2") !default;
 $card-link-color-light: lighten($card-link-color, 20%) !default;
 $card-user-name-link-color: color("brown", "darken-1") !default;
 $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !default;
 
+#letters-o,
 #letters-d {
     .cards-container.letters {
         .card {
@@ -358,6 +372,22 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
                     }
                     &:hover .user-name { color: $card-user-name-link-color-light; }
                 }
+            }
+        }
+    }
+}
+
+#letters-o {
+    .cards-container.letters {
+        .card {
+            .ribbon.employment {
+                background: transparent url(/img/ribbon-employment.png) no-repeat scroll 0 0;
+                position: absolute;
+                width: 56px;
+                height: 73px;
+                right: 10px;
+                top: -10px;
+                z-index: 999;
             }
         }
     }

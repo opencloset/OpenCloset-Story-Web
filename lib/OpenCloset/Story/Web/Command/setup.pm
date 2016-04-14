@@ -156,6 +156,9 @@ END_CONTENT
 
 !  letters-d.js
 <  /coffee/letters-d.coffee
+
+!  letters-o.js
+<  /coffee/letters-o.coffee
 END_CONTENT
         path($conf)->spew_utf8($content);
     }
