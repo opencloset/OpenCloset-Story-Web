@@ -30,6 +30,7 @@ OpenCloset-Story-Web-*
 .gitnxtver_cache
 
 # package generated files: Mojolicious setup
+assets/assetpack.def
 opencloset-story-web.conf
 
 # package generated files: bower
