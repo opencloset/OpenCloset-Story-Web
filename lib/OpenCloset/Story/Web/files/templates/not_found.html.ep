@@ -1,0 +1,19 @@
+% my $_id = "code-404";
+% layout "default", page_id => $_id, page_title_short => $page->{$_id}{title_short};
+% title $page->{$_id}{title};
+
+  <div class="parallax-container valign-wrapper custom">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <h1 class="header center yellow-text text-lighten-2">해당 페이지가 없습니다</h1>
+        <div class="row center">
+          <h5 class="header col s12 light">
+            페이지를 찾을 수 없습니다.
+            <br>
+            주소를 확인하고 접속해주세요.
+          </h5>
+        </div>
+      </div>
+    </div>
+    <div class="parallax"><img src="/img/background1.jpg" alt="Unsplashed background img 1"></div>
+  </div>
