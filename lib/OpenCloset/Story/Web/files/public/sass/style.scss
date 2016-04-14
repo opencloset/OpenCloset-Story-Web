@@ -330,7 +330,8 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
     }
 }
 
-#letters-d {
+#letters-d,
+#letters-o-id-d {
     .cards-container.letters {
         .card:nth-child(2n) {
             background-color: color("lime", "lighten-4");
@@ -360,6 +361,7 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
 
 #letters-o,
 #letters-d,
+#letters-o-id-d,
 #letters-d-id-o {
     .cards-container.letters {
         .card {
@@ -379,6 +381,7 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
     }
 }
 
+#letters-o-id-d,
 #letters-d-id-o {
     .cards-container.letters {
         .card {

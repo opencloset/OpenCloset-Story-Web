@@ -340,6 +340,55 @@ sub order_id_get {
     );
 }
 
+sub order_id_donation_get {
+    my $self = shift;
+
+    my $id = $self->param("id");
+
+    my $order = $self->schema->resultset("Order")->find($id);
+    return $self->reply->not_found unless $order;
+
+    my %donation_info;
+    my $od_rs = $order->order_details;
+    while ( my $od = $od_rs->next ) {
+        next unless $od->clothes;
+        next unless $od->clothes->donation;
+
+        my $donation = $od->clothes->donation;
+
+        #
+        # 열린옷장이 기부자일 경우 메시지는 단일로 동일하게
+        # 처리하기로 했으므로 키 값을 0으로 해시 값을 설정합니다.
+        # 데이터베이스 상 아이디는 0 초과 값이기 때문입니다.
+        #
+        if ( $donation->user->name eq '열린옷장' ) {
+            if ( $donation_info{0} ) {
+                push @{ $donation_info{0}{category} }, $od->clothes->category;
+            }
+            else {
+                $donation_info{0}{obj}      = $donation;
+                $donation_info{0}{category} = [ $od->clothes->category ];
+            }
+        }
+        else {
+            if ( $donation_info{ $donation->id } ) {
+                push @{ $donation_info{ $donation->id }{category} }, $od->clothes->category;
+            }
+            else {
+                $donation_info{ $donation->id }{obj}      = $donation;
+                $donation_info{ $donation->id }{category} = [ $od->clothes->category ];
+            }
+        }
+    }
+
+    $self->render(
+        template      => "letters-o-id-d",
+        donation_info => \%donation_info,
+        order         => $order,
+        preview_size  => 128,
+    );
+}
+
 1;
 
 __END__

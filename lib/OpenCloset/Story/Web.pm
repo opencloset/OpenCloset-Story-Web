@@ -243,6 +243,18 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-o-id-d" => {
+                                title       => "기증자 분들께서 %s님께 보내는 응원 이야기",
+                                title_short => "%s님께 보내는 응원 이야기",
+                                url         => "/letters/o/%s/d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-d
+                                        letters-o-id-d
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -347,6 +359,7 @@ sub startup {
     $r->get("/letters/o/scroll")->to("letters#order_scroll_get");
     $r->post("/letters/o")->to("letters#order_post");
     $r->get("/letters/o/:id")->to("letters#order_id_get");
+    $r->get("/letters/o/:id/d")->to("letters#order_id_donation_get");
 
     my $if_auth = $r->under(
         sub {
