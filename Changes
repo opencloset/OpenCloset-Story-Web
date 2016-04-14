@@ -1,4 +1,6 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.001     2016-04-14 18:52:59+09:00 Asia/Seoul
     - first release (alpha release 1)
