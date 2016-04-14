@@ -2,7 +2,7 @@
 % layout "default", page_id => $_id, page_title_short => $page->{$_id}{title_short};
 % title $page->{$_id}{title};
 
-  <div class="parallax-container valign-wrapper">
+  <div class="parallax-container valign-wrapper custom">
     <div class="section no-pad-bot">
       <div class="container">
         <h1 class="header center yellow-text text-lighten-2">해당 페이지가 없습니다</h1>

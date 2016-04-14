@@ -96,41 +96,51 @@ p {
     color: #000;
 }
 
-#index,
-#about,
-#code-404 {
-    .parallax-container {
-        min-height: 380px;
-        line-height: 0;
-        height: auto;
-        color: rgba(255,255,255,.9);
+.parallax-container.custom {
+    min-height: 380px;
+    line-height: 0;
+    height: auto;
+    color: rgba(255,255,255,.9);
 
-        .section {
-            width: 100%;
-        }
+    .section {
+        width: 100%;
 
-        h1, h2, h3, h4, h5, h6 {
-            text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
-        }
+        @media only screen and (max-width : 360px) {
+            h1 {
+                font-size: 2em;
+            }
 
-        h1 {
-            font-size: 4.6em;
-            font-weight: bold;
-        }
+            h1.twoline {
+                font-size: 2.6em;
+            }
 
-        h1.twoline {
-            line-height: 1.6em;
+            h5 {
+                font-size: 1.5em;
+            }
         }
+    }
 
-        h5 {
-            font-size: 2.2em;
-            font-weight: bold;
-            line-height: 1.6em;
-        }
+    h1, h2, h3, h4, h5, h6 {
+        text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+    }
 
-        .parallax img {
-            filter: blur(2px);
-        }
+    h1 {
+        font-size: 4.6em;
+        font-weight: bold;
+    }
+
+    h1.twoline {
+        line-height: 1.6em;
+    }
+
+    h5 {
+        font-size: 2.2em;
+        font-weight: bold;
+        line-height: 1.6em;
+    }
+
+    .parallax img {
+        filter: blur(2px);
     }
 }
 
