@@ -231,6 +231,18 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "letters-d-id-o" => {
+                                title       => "대여자 분들께서 %s님께 보내는 감사 이야기",
+                                title_short => "%s님께 보내는 감사 이야기",
+                                url         => "/letters/d/%s/o",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        letters-o
+                                        letters-d-id-o
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -329,6 +341,7 @@ sub startup {
     $r->get("/letters/d/scroll")->to("letters#donation_scroll_get");
     $r->post("/letters/d")->to("letters#donation_post");
     $r->get("/letters/d/:id")->to("letters#donation_id_get");
+    $r->get("/letters/d/:id/o")->to("letters#donation_id_order_get");
 
     $r->get("/letters/o")->to("letters#order_get");
     $r->get("/letters/o/scroll")->to("letters#order_scroll_get");

@@ -151,6 +151,37 @@ sub donation_id_get {
     );
 }
 
+sub donation_id_order_get {
+    my $self = shift;
+
+    my $id = $self->param("id");
+
+    my $donation = $self->schema->resultset("Donation")->find($id);
+    return $self->reply->not_found unless $donation;
+
+    my %order_info;
+    my $clothes_rs = $donation->clothes;
+    while ( my $clothes = $clothes_rs->next ) {
+        my $order_rs = $clothes->orders;
+        while ( my $order = $order_rs->next ) {
+            if ( $order_info{ $order->id } ) {
+                push @{ $order_info{ $order->id }{category} }, $clothes->category;
+            }
+            else {
+                $order_info{ $order->id }{obj}      = $order;
+                $order_info{ $order->id }{category} = [ $clothes->category ];
+            }
+        }
+    }
+
+    $self->render(
+        template     => "letters-d-id-o",
+        order_info   => \%order_info,
+        donation     => $donation,
+        preview_size => 128,
+    );
+}
+
 sub order_get {
     my $self = shift;
 

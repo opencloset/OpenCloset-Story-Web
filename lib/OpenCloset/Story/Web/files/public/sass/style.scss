@@ -341,7 +341,8 @@ $medium-only: "only screen and (min-width : #{$small-screen-up}) and (max-width 
     }
 }
 
-#letters-o {
+#letters-o,
+#letters-d-id-o {
     .cards-container.letters {
         .card:nth-child(2n) {
             background-color: color("yellow", "lighten-4");
@@ -358,7 +359,8 @@ $card-user-name-link-color: color("brown", "darken-1") !default;
 $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !default;
 
 #letters-o,
-#letters-d {
+#letters-d,
+#letters-d-id-o {
     .cards-container.letters {
         .card {
             .card-action {
@@ -371,6 +373,19 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
                         color: $card-user-name-link-color;
                     }
                     &:hover .user-name { color: $card-user-name-link-color-light; }
+                }
+            }
+        }
+    }
+}
+
+#letters-d-id-o {
+    .cards-container.letters {
+        .card {
+            .card-content {
+                p:first-child {
+                    font-size: 150%;
+                    color: color("blue-grey", "darken-1");
                 }
             }
         }
