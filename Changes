@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - /letters/o/:id/d: Change display format (#7)
     - /letters/d/:id/o: Change display format (#6)
     - /: Update content of home page (#2, #3)
 
