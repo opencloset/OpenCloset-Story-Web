@@ -1,7 +1,9 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
-    - Update content of home page (#2, #3)
+    - /letters/o/:id/d: Change display format (#7)
+    - /letters/d/:id/o: Change display format (#6)
+    - /: Update content of home page (#2, #3)
 
 0.002     2016-04-14 19:19:22+09:00 Asia/Seoul
     - Update module dependency
