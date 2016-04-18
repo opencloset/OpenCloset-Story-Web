@@ -38,6 +38,10 @@
           </div>
         </div>
 
+        <div class="col s8 offset-s2 cross-link">
+          <a href="<%= url_for("/letters/o/" . $order->id . "/d") %>" class="waves-effect waves-light btn left"><i class="fa fa-envelope"></i> <span class="user-name"><%= $order->user->name %></span> 님에게 보내는 응원 이야기</a>
+        </div>
+
         <div class="col s12">
           % if ($prev_order_id) {
             <a href="<%= url_for("/letters/o/$prev_order_id") %>" class="yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>

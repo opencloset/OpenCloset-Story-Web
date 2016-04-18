@@ -488,3 +488,12 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
         }
     }
 }
+
+#letters-o-id {
+    .cross-link {
+        margin-bottom: 10px;
+        a.btn {
+            width: 100%;
+        }
+    }
+}
