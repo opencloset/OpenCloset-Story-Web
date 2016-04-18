@@ -244,8 +244,8 @@ sub _load_config {
                                 ],
                             },
                             "letters-o-id-d" => {
-                                title       => "기증자 분들께서 %s님께 보내는 응원 이야기",
-                                title_short => "%s님께 보내는 응원 이야기",
+                                title       => "기증자들이 %s 님께 보내는 응원 이야기",
+                                title_short => "%s 님께 보내는 응원 이야기",
                                 url         => "/letters/o/%s/d",
                                 breadcrumb  => [
                                     qw/
