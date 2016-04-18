@@ -232,8 +232,8 @@ sub _load_config {
                                 ],
                             },
                             "letters-d-id-o" => {
-                                title       => "대여자들이 %s 님께 보내는 감사 이야기",
-                                title_short => "%s 님께 보내는 감사 이야기",
+                                title       => "대여자들이 %s 님에게 보내는 감사 이야기",
+                                title_short => "%s 님에게 보내는 감사 이야기",
                                 url         => "/letters/d/%s/o",
                                 breadcrumb  => [
                                     qw/
@@ -244,8 +244,8 @@ sub _load_config {
                                 ],
                             },
                             "letters-o-id-d" => {
-                                title       => "기증자들이 %s 님께 보내는 응원 이야기",
-                                title_short => "%s 님께 보내는 응원 이야기",
+                                title       => "기증자들이 %s 님에게 보내는 응원 이야기",
+                                title_short => "%s 님에게 보내는 응원 이야기",
                                 url         => "/letters/o/%s/d",
                                 breadcrumb  => [
                                     qw/
