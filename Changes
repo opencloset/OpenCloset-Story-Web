@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.003     2016-04-21 14:10:53+09:00 Asia/Seoul
     - /letters/d/:id: Add cross link (#5)
     - /letters/o/:id: Add cross link (#4)
     - footer: Add contents management legal notice (#10)
