@@ -40,9 +40,9 @@
                 <div class="card-content black-text">
                   <p>
                     % my $first_line = sprintf(
-                    %   "%s님께서 기증해주신 %s",
-                    %   $donation->user->name,
+                    %   "%s 기증자 - %s 님",
                     %   join( q{, }, map $category_to_str{$_}, @$category_list ),
+                    %   $donation->user->name,
                     % );
                     <%= $first_line %>
                   </p>
