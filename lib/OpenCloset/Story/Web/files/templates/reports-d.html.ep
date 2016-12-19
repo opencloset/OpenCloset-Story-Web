@@ -18,11 +18,21 @@
       <div class="row">
 
         % if ($q) {
-        %   if ( $donation_rs && $donation_rs->count ) {
+        %   if ( $user_rs && $user_rs->count ) {
           <div class="col s12 cards-container letters">
-            % while ( my $donation = $donation_rs->next ) {
+            % while ( my $user = $user_rs->next ) {
+            %   my $donation = $user->donations->first;
               <div class="card">
                 <div class="card-content black-text">
+                  <p>
+                    <a href="<%= url_for("/reports/d/" . $user->id) %>">
+                      <%= $donation->user->name %>
+                      /
+                      <%= $donation->user->email %>
+                      /
+                      <%= $donation->user->user_info->phone %>
+                    </a>
+                  </p>
                   <p>
                     % my $message = substr( $donation->message, 0, $preview_size );
                     <%= $message  %>
@@ -30,11 +40,6 @@
                     …
                     % }
                   </p>
-                </div>
-                <div class="card-action">
-                  <a href="<%= url_for("/letters/d/" . $donation->id) %>"><span class="user-name"><%= $donation->user->name %></span>님 기증 이야기 더 읽기 <i class="fa fa-arrow-right"></i></a>
-                  <br>
-                  <a href="<%= url_for("/letters/d/" . $donation->id . "/o") %>"><span class="user-name"><%= $donation->user->name %></span>님께 드리는 감사 더 읽기 <i class="fa fa-arrow-right"></i></a>
                 </div>
               </div>
             % }

@@ -505,7 +505,11 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
         .card {
             display: inline-block;
             .card-content {
-                p::first-line {
+                p:first-child {
+                    margin-bottom: 10px;
+                }
+                p:first-child,
+                p:nth-child(n+2)::first-line {
                     font-size: 150%;
                     color: color("blue-grey", "darken-1");
                 }

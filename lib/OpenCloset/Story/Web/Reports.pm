@@ -5,17 +5,17 @@ use Mojo::Base "Mojolicious::Controller";
 
 our $VERSION = '0.004';
 
-sub donation_get {
+sub donor_get {
     my $self = shift;
 
     $self->render(
         template     => "reports-d",
-        donation_rs  => undef,
+        user_rs      => undef,
         preview_size => 128,
     );
 }
 
-sub donation_post {
+sub donor_post {
     my $self = shift;
 
     my $q    = $self->param("q");
@@ -24,7 +24,7 @@ sub donation_post {
 
     my @cond;
     if ( length $name >= 2 ) {
-        push @cond, +{ "user.name" => $name };
+        push @cond, +{ "me.name" => $name };
     }
     if ( length $phone >= 7 ) {
         push @cond, +{ "user_info.phone" => $phone };
@@ -33,7 +33,7 @@ sub donation_post {
     unless (@cond) {
         $self->render(
             template     => "reports-d",
-            donation_rs  => undef,
+            user_rs      => undef,
             preview_size => 128,
             q            => $q,
         );
@@ -42,19 +42,28 @@ sub donation_post {
 
     my $limit = 24;
 
-    my $donation_rs = $self->schema->resultset("Donation")->search(
-        { -or => \@cond },
+    my $user_rs = $self->schema->resultset("User")->search(
         {
-            join     => { "user" => "user_info" },
+            -and => [
+                { "donations.id" => { "!=" => undef } },
+                -or => \@cond,
+            ],
+        },
+        {
+            join     => [
+                "donations",
+                "user_info",
+            ],
             order_by => { -desc  => "me.id" },
+            group_by => [ "me.id" ],
             rows     => $limit,
         },
     );
 
     $self->render(
         template     => "reports-d",
-        donation_rs  => $donation_rs,
-        preview_size => 128,
+        user_rs      => $user_rs,
+        preview_size => 256,
         q            => $q,
     );
 }
@@ -73,4 +82,6 @@ __END__
 
 ...
 
-=method donation_get
+=method donor_get
+
+=method donor_post
