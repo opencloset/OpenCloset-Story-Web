@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - Browse donation list even if donation message doesn't exist (#34)
 
 0.003     2016-04-21 14:10:53+09:00 Asia/Seoul
     - /letters/d/:id: Add cross link (#5)
