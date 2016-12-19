@@ -255,6 +255,17 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "reports-d" => {
+                                title       => "기증 리포트",
+                                title_short => "기증 리포트",
+                                url         => "/reports/d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        reports-d
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
