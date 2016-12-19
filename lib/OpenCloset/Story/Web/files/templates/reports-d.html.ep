@@ -16,6 +16,45 @@
       </div>
 
       <div class="row">
+
+        % if ($q) {
+        %   if ( $donation_rs && $donation_rs->count ) {
+          <div class="col s12 cards-container letters">
+            % while ( my $donation = $donation_rs->next ) {
+              <div class="card">
+                <div class="card-content black-text">
+                  <p>
+                    % my $message = substr( $donation->message, 0, $preview_size );
+                    <%= $message  %>
+                    % if ( length($message) < length($donation->message) ) {
+                    …
+                    % }
+                  </p>
+                </div>
+                <div class="card-action">
+                  <a href="<%= url_for("/letters/d/" . $donation->id) %>"><span class="user-name"><%= $donation->user->name %></span>님 기증 이야기 더 읽기 <i class="fa fa-arrow-right"></i></a>
+                  <br>
+                  <a href="<%= url_for("/letters/d/" . $donation->id . "/o") %>"><span class="user-name"><%= $donation->user->name %></span>님께 드리는 감사 더 읽기 <i class="fa fa-arrow-right"></i></a>
+                </div>
+              </div>
+            % }
+          </div>
+        %   }
+        %   else {
+          <div class="col s12 cards-container">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">이야기를 찾을 수 없습니다.</span>
+                <p>
+                  입력하신 이름이나 전화번호에 해당하는 이야기를 찾을 수 없습니다.
+                  기증자께서 편지를 남겨주시지 않은 경우는 이야기를 찾을 수 없습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        %   }
+        % }
+
       </div>
 
     </div>
