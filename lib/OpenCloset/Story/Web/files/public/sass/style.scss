@@ -498,3 +498,36 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
         }
     }
 }
+
+#reports-d {
+    .cards-container.letters {
+        column-break-inside: avoid;
+        .card {
+            display: inline-block;
+            .card-content {
+                p::first-line {
+                    font-size: 150%;
+                    color: color("blue-grey", "darken-1");
+                }
+            }
+            .card-action {
+                a:not(.btn):not(.btn-large):not(.btn-floating) {
+                    color: $card-link-color;
+                    &:hover { color: $card-link-color-light; }
+
+                    .user-name {
+                        font-weight: bold;
+                        color: $card-user-name-link-color;
+                    }
+                    &:hover .user-name { color: $card-user-name-link-color-light; }
+                }
+            }
+        }
+        .card:nth-child(2n) {
+            background-color: color("lime", "lighten-4");
+        }
+        .card:nth-child(2n+1) {
+            background-color: color("lime", "lighten-2");
+        }
+    }
+}
