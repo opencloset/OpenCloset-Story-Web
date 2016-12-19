@@ -77,9 +77,7 @@ sub donation_post {
     my $limit = 24;
 
     my $donation_rs = $self->schema->resultset("Donation")->search(
-        {
-            -or => \@cond,
-        },
+        { -or => \@cond },
         {
             join     => { "user" => "user_info" },
             order_by => { -desc  => "me.id" },
@@ -103,9 +101,7 @@ sub donation_id_get {
     my $next_donation_id;
     {
         my $donation = $self->schema->resultset("Donation")->search(
-            {
-                "me.id" => { "<" => $id },
-            },
+            { "me.id" => { "<" => $id } },
             {
                 order_by => { -desc => "id" },
                 rows     => $1,
@@ -117,9 +113,7 @@ sub donation_id_get {
     my $prev_donation_id;
     {
         my $donation = $self->schema->resultset("Donation")->search(
-            {
-                "me.id" => { ">" => $id },
-            },
+            { "me.id" => { ">" => $id } },
             {
                 order_by => { -asc => "id" },
                 rows     => $1,
