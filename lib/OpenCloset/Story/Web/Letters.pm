@@ -11,7 +11,7 @@ sub donation_get {
     my $limit = 24;
 
     my $donation_rs = $self->schema->resultset("Donation")->search(
-        { -and => [ { message => { "!=" => undef } }, { message => { "!=" => q{} } }, ], },
+        {},
         {
             order_by => { -desc => "id" },
             rows     => $limit,
@@ -33,7 +33,7 @@ sub donation_scroll_get {
     my $limit = 24;
 
     my $donation_rs = $self->schema->resultset("Donation")->search(
-        { -and => [ { message => { "!=" => undef } }, { message => { "!=" => q{} } }, ], },
+        {},
         {
             order_by => { -desc => "id" },
             page     => $page,
@@ -78,11 +78,7 @@ sub donation_post {
 
     my $donation_rs = $self->schema->resultset("Donation")->search(
         {
-            -and => [
-                { "me.message" => { "!=" => undef } },
-                { "me.message" => { "!=" => q{} } },
-                { -or          => \@cond },
-            ],
+            -or => \@cond,
         },
         {
             join     => { "user" => "user_info" },
@@ -108,11 +104,7 @@ sub donation_id_get {
     {
         my $donation = $self->schema->resultset("Donation")->search(
             {
-                -and => [
-                    { "me.message" => { "!=" => undef } },
-                    { "me.message" => { "!=" => q{} } },
-                    { "me.id"      => { "<"  => $id } },
-                ],
+                "me.id" => { "<" => $id },
             },
             {
                 order_by => { -desc => "id" },
@@ -126,11 +118,7 @@ sub donation_id_get {
     {
         my $donation = $self->schema->resultset("Donation")->search(
             {
-                -and => [
-                    { "me.message" => { "!=" => undef } },
-                    { "me.message" => { "!=" => q{} } },
-                    { "me.id"      => { ">"  => $id } },
-                ],
+                "me.id" => { ">" => $id },
             },
             {
                 order_by => { -asc => "id" },
