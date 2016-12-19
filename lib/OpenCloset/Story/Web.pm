@@ -361,6 +361,10 @@ sub startup {
     $r->get("/letters/o/:id")->to("letters#order_id_get");
     $r->get("/letters/o/:id/d")->to("letters#order_id_donation_get");
 
+    $r->get("/reports/d")->to("reports#donation_get");
+    $r->post("/reports/d")->to("reports#donation_post");
+    $r->get("/reports/d/:id")->to("reports#donation_id_get");
+
     my $if_auth = $r->under(
         sub {
             my $self = shift;
