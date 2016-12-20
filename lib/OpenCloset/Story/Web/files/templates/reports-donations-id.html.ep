@@ -91,6 +91,21 @@
           <div class="col s8 offset-s2 cross-link">
             <a href="<%= url_for("/letters/d/" . $donation->id . "/o") %>" class="waves-effect waves-light btn left"><i class="fa fa-envelope"></i> <span class="user-name"><%= $donation->user->name %></span> 님에게 드리는 감사 더 읽기</a>
           </div>
+
+          <div class="col s12">
+            % if (1) {
+              <a href="<%= url_for("") %>" class="yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>
+            % }
+            % else {
+              <a class="disabled yellow black-text waves-effect waves-light btn left"><i class="fa fa-arrow-left left"></i>이전</a>
+            % }
+            % if (1) {
+              <a href="<%= url_for("") %>" class="yellow black-text waves-effect waves-light btn right"><i class="fa fa-arrow-right right"></i>다음</a>
+            % }
+            % else {
+              <a class="disabled yellow black-text waves-effect waves-light btn right"><i class="fa fa-arrow-right right"></i>다음</a>
+            % }
+          </div>
         % }
         % else {
           <div class="col s12 cards-container">
