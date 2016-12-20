@@ -258,7 +258,7 @@ sub _load_config {
                             "reports-donor" => {
                                 title       => "기증 리포트",
                                 title_short => "기증 리포트",
-                                url         => "/reports/d",
+                                url         => "/reports/donor",
                                 breadcrumb  => [
                                     qw/
                                         index
