@@ -16,7 +16,7 @@
           <div class="card">
             <div class="card-content black-text">
               <div class="donation-info">
-                <div class="donation-name"> <%= $donor->name %> </div>
+                <div class="donation-name"> <%= $donor->name %> 님 </div>
                 <div class="donation-title"> 기증 리포트 </div>
                 <div>
                   <ul>
