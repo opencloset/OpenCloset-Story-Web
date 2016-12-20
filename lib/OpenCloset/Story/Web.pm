@@ -255,14 +255,14 @@ sub _load_config {
                                         /
                                 ],
                             },
-                            "reports-d" => {
+                            "reports-donor" => {
                                 title       => "기증 리포트",
                                 title_short => "기증 리포트",
                                 url         => "/reports/d",
                                 breadcrumb  => [
                                     qw/
                                         index
-                                        reports-d
+                                        reports-donor
                                         /
                                 ],
                             },
@@ -372,9 +372,9 @@ sub startup {
     $r->get("/letters/o/:id")->to("letters#order_id_get");
     $r->get("/letters/o/:id/d")->to("letters#order_id_donation_get");
 
-    $r->get("/reports/d")->to("reports#donor_get");
-    $r->post("/reports/d")->to("reports#donor_post");
-    $r->get("/reports/d/:id")->to("reports#donor_id_get");
+    $r->get("/reports/donor")->to("reports#donor_get");
+    $r->post("/reports/donor")->to("reports#donor_post");
+    $r->get("/reports/donor/:id")->to("reports#donor_id_get");
 
     my $if_auth = $r->under(
         sub {

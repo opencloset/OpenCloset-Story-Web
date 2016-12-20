@@ -1,4 +1,4 @@
-% my $_id = "reports-d";
+% my $_id = "reports-donor";
 % layout "default", page_id => $_id;
 % title $page->{$_id}{title};
 
@@ -6,7 +6,7 @@
     <div class="section">
 
       <div class="row">
-        <form action="<%= url_for("/reports/d") %>" method="post">
+        <form action="<%= url_for("/reports/donor") %>" method="post">
           <div class="col s12 m6 offset-m3 l6 offset-l3 input-field">
             <i class="material-icons prefix">search</i>
             <input id="q" name="q" type="text" class="validate" value="<%= $q %>">
@@ -25,7 +25,7 @@
               <div class="card">
                 <div class="card-content black-text">
                   <p>
-                    <a href="<%= url_for("/reports/d/" . $user->id) %>">
+                    <a href="<%= url_for("/reports/donor/" . $user->id) %>">
                       <%= $donation->user->name %>
                       /
                       <%= $donation->user->email %>
