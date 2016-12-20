@@ -5,7 +5,7 @@
 % layout "default", page_id => $_id, page_title_short => $_title_short;
 % title $_title;
 
-% use Mojo::Util qw( xml_escape );
+% use Mojo::JSON;
 
   <div class="container">
     <div class="section">
@@ -76,20 +76,38 @@
           </div>
         </div>
 
-        % if ($order_message) {
-        %   my $message = xml_escape $order_message;
-        %   $message =~ s/\n/<br>\n/g;
+        %= javascript begin
+          var orderMessages = [];
+        % end
+
+        % if (@$order_messages) {
+        %=  javascript begin
+          orderMessages = <%== Mojo::JSON::to_json($order_messages) %>;
+        %   end
+
+          <div class="space-30"> </div>
+
+          <div class="col s12">
+            <button class="yellow black-text waves-effect waves-light btn left btn-order-message btn-order-message-prev" data-order-message-index="-1"><i class="fa fa-arrow-left left"></i>이전</button>
+            <button class="yellow black-text waves-effect waves-light btn right btn-order-message btn-order-message-next"  data-order-message-index="1"><i class="fa fa-arrow-right right"></i>다음</button>
+          </div>
+
           <div class="col s12 cards-container">
             <div class="card notepad">
               <div class="card-content black-text">
-                <p>
-                  <%== $message  %>
+                <p id="order-message">
+                  <%== $order_messages->[0] %>
                 </p>
               </div>
             </div>
           </div>
           <div class="col s8 offset-s2 cross-link">
             <a href="<%= url_for("/letters/d/" . $donation->id . "/o") %>" class="waves-effect waves-light btn left"><i class="fa fa-envelope"></i> <span class="user-name"><%= $donation->user->name %></span> 님에게 드리는 감사 더 읽기</a>
+          </div>
+
+          <div class="col s12">
+            <button class="yellow black-text waves-effect waves-light btn left btn-order-message btn-order-message-prev" data-order-message-index="-1"><i class="fa fa-arrow-left left"></i>이전</button>
+            <button class="yellow black-text waves-effect waves-light btn right btn-order-message btn-order-message-next"  data-order-message-index="1"><i class="fa fa-arrow-right right"></i>다음</button>
           </div>
         % }
         % else {
