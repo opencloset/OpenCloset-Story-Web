@@ -84,6 +84,12 @@
         %=  javascript begin
           orderMessages = <%== Mojo::JSON::to_json($order_messages) %>;
         %   end
+
+          <div class="col s12">
+            <button class="yellow black-text waves-effect waves-light btn left btn-order-message btn-order-message-prev" data-order-message-index="-1"><i class="fa fa-arrow-left left"></i>이전</button>
+            <button class="yellow black-text waves-effect waves-light btn right btn-order-message btn-order-message-next"  data-order-message-index="1"><i class="fa fa-arrow-right right"></i>다음</button>
+          </div>
+
           <div class="col s12 cards-container">
             <div class="card notepad">
               <div class="card-content black-text">
