@@ -45,19 +45,11 @@ sub donors_post {
     my $limit = 24;
 
     my $user_rs = $self->schema->resultset("User")->search(
+        { -and => [ { "donations.id" => { "!=" => undef } }, -or => \@cond, ], },
         {
-            -and => [
-                { "donations.id" => { "!=" => undef } },
-                -or => \@cond,
-            ],
-        },
-        {
-            join     => [
-                "donations",
-                "user_info",
-            ],
-            order_by => { -desc  => "me.id" },
-            group_by => [ "me.id" ],
+            join => [ "donations", "user_info", ],
+            order_by => { -desc => "me.id" },
+            group_by => ["me.id"],
             rows     => $limit,
         },
     );
@@ -92,10 +84,8 @@ sub donors_id_get {
                 "order.id"     => { "!=" => undef },
             },
             {
-                join      => [
-                    { "clothes" => { "order_details" => { "order" => "user" } } },
-                ],
-                group_by  => ["user.id"],
+                join => [ { "clothes" => { "order_details" => { "order" => "user" } } }, ],
+                group_by => ["user.id"],
             },
         );
         $rented_user_count = $rs->count;
@@ -109,10 +99,8 @@ sub donors_id_get {
                 "order.id"     => { "!=" => undef },
             },
             {
-                join      => [
-                    { "clothes" => { "order_details" => "order" } },
-                ],
-                group_by  => ["order.id"],
+                join     => [ { "clothes" => { "order_details" => "order" } }, ],
+                group_by => ["order.id"],
             },
         );
         $rented_order_count = $rs->count;
@@ -127,10 +115,8 @@ sub donors_id_get {
                 "order.message" => { "!=" => undef },
             },
             {
-                join      => [
-                    { "clothes" => { "order_details" => "order" } },
-                ],
-                group_by  => ["order.id"],
+                join     => [ { "clothes" => { "order_details" => "order" } }, ],
+                group_by => ["order.id"],
             },
         );
         $rented_order_message_count = $rs->count;
@@ -174,9 +160,7 @@ sub donations_id_get {
                 group_by  => ["clothes.category"],
                 "columns" => [
                     { category => "clothes.category" },
-                    {
-                        count => { count => "clothes.category", -as => "clothes_category_count" },
-                    },
+                    { count    => { count => "clothes.category", -as => "clothes_category_count" }, },
                 ],
             },
         );
@@ -201,10 +185,8 @@ sub donations_id_get {
                 "order.id"     => { "!=" => undef },
             },
             {
-                join      => [
-                    { "clothes" => { "order_details" => "order" } },
-                ],
-                group_by  => ["order.id"],
+                join     => [ { "clothes" => { "order_details" => "order" } }, ],
+                group_by => ["order.id"],
             },
         );
         $rented_order_count = $rs->count;
@@ -220,9 +202,7 @@ sub donations_id_get {
                 "order.id"     => { "!=" => undef },
             },
             {
-                join => [
-                    { "clothes" => { "order_details" => "order" } },
-                ],
+                join      => [ { "clothes" => { "order_details" => "order" } }, ],
                 group_by  => ["clothes.category"],
                 "columns" => [
                     { category => "clothes.category" },
@@ -253,10 +233,8 @@ sub donations_id_get {
                 "order.pass"   => 1,
             },
             {
-                join      => [
-                    { "clothes" => { "order_details" => "order" } },
-                ],
-                group_by  => ["order.id"],
+                join     => [ { "clothes" => { "order_details" => "order" } }, ],
+                group_by => ["order.id"],
             },
         );
         $acceptance_order_count = $rs->count;
@@ -273,14 +251,10 @@ sub donations_id_get {
                 "order.message" => { "!=" => undef },
             },
             {
-                join      => [
-                    { "clothes" => { "order_details" => "order" } },
-                ],
-                group_by  => ["order.id"],
-                order_by  => { -desc => "order.id" },
-                "columns" => [
-                    { order_message => "order.message" },
-                ],
+                join     => [ { "clothes" => { "order_details" => "order" } }, ],
+                group_by => ["order.id"],
+                order_by => { -desc => "order.id" },
+                "columns" => [ { order_message => "order.message" }, ],
             },
         );
         $order_message_count = $rs->count;
