@@ -27,7 +27,7 @@
             %   my $user_phone = $user->user_info->phone;
 
             %   $user_email =~ s/^../\*\*/;
-            %   $user_email =~ s/\@../\@\*\*/;
+            %   $user_email =~ s/\@([^.]+)/my $len = length($1); "@" . "*" x $len/e;
             %   $user_phone =~ s/^(...)..../$1\*\*\*\*/;
               <div class="card">
                 <div class="card-content black-text">
