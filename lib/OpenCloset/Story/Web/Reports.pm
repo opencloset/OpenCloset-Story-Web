@@ -68,6 +68,84 @@ sub donor_post {
     );
 }
 
+sub donor_id_get {
+    my $self = shift;
+
+    my $donor_id = $self->param("id");
+
+    my $donor = $self->schema->resultset("User")->find($donor_id);
+    return $self->reply->not_found unless $donor;
+
+    my $donation_rs =
+        $donor->donations->search( {}, { order_by => { -desc => "id" }, } );
+
+    my $donated_clothes_count = 0;
+    $donated_clothes_count += $_->clothes->count for $donor->donations;
+
+    my $rented_user_count = 0;
+    {
+        my $rs = $donor->donations->search(
+            {
+                "clothes.code" => { "!=" => undef },
+                "order.id"     => { "!=" => undef },
+            },
+            {
+                join      => [
+                    { "clothes" => { "order_details" => { "order" => "user" } } },
+                ],
+                group_by  => ["user.id"],
+            },
+        );
+        $rented_user_count = $rs->count;
+    };
+
+    my $rented_order_count = 0;
+    {
+        my $rs = $donor->donations->search(
+            {
+                "clothes.code" => { "!=" => undef },
+                "order.id"     => { "!=" => undef },
+            },
+            {
+                join      => [
+                    { "clothes" => { "order_details" => "order" } },
+                ],
+                group_by  => ["order.id"],
+            },
+        );
+        $rented_order_count = $rs->count;
+    };
+
+    my $rented_order_message_count = 0;
+    {
+        my $rs = $donor->donations->search(
+            {
+                "clothes.code"  => { "!=" => undef },
+                "order.id"      => { "!=" => undef },
+                "order.message" => { "!=" => undef },
+            },
+            {
+                join      => [
+                    { "clothes" => { "order_details" => "order" } },
+                ],
+                group_by  => ["order.id"],
+            },
+        );
+        $rented_order_message_count = $rs->count;
+    };
+
+    $self->render(
+        template                   => "reports-donor-id",
+        donor                      => $donor,
+        donation_rs                => $donation_rs,
+        donated_clothes_count      => $donated_clothes_count,
+        rented_user_count          => $rented_user_count,
+        rented_order_count         => $rented_order_count,
+        rented_order_message_count => $rented_order_message_count,
+        preview_size               => 256,
+    );
+}
+
 1;
 
 __END__

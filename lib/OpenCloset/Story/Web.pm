@@ -266,6 +266,18 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "reports-donor-id" => {
+                                title       => "%s 님의 기증 리포트",
+                                title_short => "%s 님의 기증 리포트",
+                                url         => "/reports/donor/%d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        reports-donor
+                                        reports-donor-id
+                                        /
+                                ],
+                            },
                         },
                     },
                 },

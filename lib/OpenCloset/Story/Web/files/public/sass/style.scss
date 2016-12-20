@@ -535,3 +535,70 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
         }
     }
 }
+
+#reports-donor-id {
+    .cards-container.letters {
+        column-break-inside: avoid;
+        .card {
+            display: inline-block;
+            .card-content {
+                p:first-child {
+                    margin-bottom: 10px;
+                }
+                p:nth-child(n+2)::first-line {
+                    font-size: 150%;
+                    color: color("blue-grey", "darken-1");
+                }
+            }
+            .card-action {
+                a:not(.btn):not(.btn-large):not(.btn-floating) {
+                    color: $card-link-color;
+                    &:hover { color: $card-link-color-light; }
+
+                    .user-name {
+                        font-weight: bold;
+                        color: $card-user-name-link-color;
+                    }
+                    &:hover .user-name { color: $card-user-name-link-color-light; }
+                }
+            }
+        }
+        .card:nth-child(2n) {
+            background-color: color("lime", "lighten-4");
+        }
+        .card:nth-child(2n+1) {
+            background-color: color("lime", "lighten-2");
+        }
+    }
+    .donor-info {
+        background-color: color("blue-grey", "lighten-3");
+        font-size: 150%;
+
+        .user-name {
+            font-weight: bold;
+        }
+
+        /*
+         * pipe separator between list
+         * http://stackoverflow.com/questions/9171699/add-a-pipe-separator-after-items-in-an-unordered-list-unless-that-item-is-the-la
+         */
+        position: relative;
+        margin: 1em;
+        overflow: hidden;
+        ul {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-left: -1px;
+        }
+        li {
+            flex-grow: 1;
+            flex-basis: auto;
+            margin: .2em 0;
+            padding: 0 1em;
+            text-align: center;
+            border-left: 1px solid black;
+        }
+    }
+}
