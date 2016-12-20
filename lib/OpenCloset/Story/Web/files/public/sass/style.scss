@@ -630,6 +630,13 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
             width: 100%;
         }
     }
+    .space-30 {
+        margin: 30px 0 29px;
+        min-width: 1px;
+        max-height: 1px;
+        min-height: 1px;
+        overflow: hidden;
+    }
     .cards-container {
         column-break-inside: avoid;
         .card {
