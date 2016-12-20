@@ -255,6 +255,41 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "reports-donors" => {
+                                title       => "기증 리포트",
+                                title_short => "기증 리포트",
+                                url         => "/reports/donors",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        reports-donors
+                                        /
+                                ],
+                            },
+                            "reports-donors-id" => {
+                                title       => "%s 님의 기증 리포트",
+                                title_short => "%s 님의 기증 리포트",
+                                url         => "/reports/donors/%d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        reports-donors
+                                        reports-donors-id
+                                        /
+                                ],
+                            },
+                            "reports-donations-id" => {
+                                title       => "%s 님의 %d년 %d월 %d일 기증 리포트",
+                                title_short => "%s 님의 %d년 %d월 %d일 기증 리포트",
+                                url         => "/reports/donations/%d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        reports-donors
+                                        reports-donations-id
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -360,6 +395,12 @@ sub startup {
     $r->post("/letters/o")->to("letters#order_post");
     $r->get("/letters/o/:id")->to("letters#order_id_get");
     $r->get("/letters/o/:id/d")->to("letters#order_id_donation_get");
+
+    $r->get("/reports/donors")->to("reports#donors_get");
+    $r->post("/reports/donors")->to("reports#donors_post");
+    $r->get("/reports/donors/:id")->to("reports#donors_id_get");
+
+    $r->get("/reports/donations/:id")->to("reports#donations_id_get");
 
     my $if_auth = $r->under(
         sub {

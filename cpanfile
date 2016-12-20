@@ -3,6 +3,7 @@ requires "Mojo::Base" => "0";
 requires "Mojolicious::Commands" => "0";
 requires "Mojolicious::Plugin::AssetPack" => "1.04";
 requires "Mojolicious::Plugin::Authentication" => "0";
+requires "OpenCloset::Constants::Category" => "0";
 requires "OpenCloset::Schema" => "0.027";
 requires "Path::Tiny" => "0";
 requires "perl" => "5.008";

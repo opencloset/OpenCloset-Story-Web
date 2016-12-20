@@ -1,0 +1,72 @@
+% my $_id = "reports-donors";
+% layout "default", page_id => $_id;
+% title $page->{$_id}{title};
+
+  <div class="container">
+    <div class="section">
+
+      <div class="row">
+        <form method="post">
+          <div class="col s12 m6 offset-m3 l6 offset-l3 input-field">
+            <i class="material-icons prefix">search</i>
+            <input id="q" name="q" type="text" class="validate" value="<%= $q %>">
+            <label for="q">이름이나 전화번호로 기증자를 찾아보세요.</label>
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+
+        % if ($q) {
+        %   if ( $user_rs && $user_rs->count ) {
+          <div class="col s12 cards-container letters">
+            % while ( my $user = $user_rs->next ) {
+            %   my $donation   = $user->donations->first;
+            %   my $user_name  = $user->name;
+            %   my $user_email = $user->email;
+            %   my $user_phone = $user->user_info->phone;
+
+            %   $user_email =~ s/^../\*\*/;
+            %   $user_email =~ s/\@([^.]+)/my $len = length($1); "@" . "*" x $len/e;
+            %   $user_phone =~ s/^(...)..../$1\*\*\*\*/;
+              <div class="card">
+                <div class="card-content black-text">
+                  <p>
+                    <a href="<%= url_for("/reports/donors/" . $user->id) %>">
+                      <%= $user_name %>
+                      /
+                      <%= $user_email %>
+                      /
+                      <%= $user_phone %>
+                    </a>
+                  </p>
+                  <p>
+                    % my $message = substr( $donation->message, 0, $preview_size );
+                    <%= $message  %>
+                    % if ( length($message) < length($donation->message) ) {
+                    …
+                    % }
+                  </p>
+                </div>
+              </div>
+            % }
+          </div>
+        %   }
+        %   else {
+          <div class="col s12 cards-container">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">기증자를 찾을 수 없습니다.</span>
+                <p>
+                  입력하신 이름이나 전화번호에 해당하는 기증자를 찾을 수 없습니다.
+                </p>
+              </div>
+            </div>
+          </div>
+        %   }
+        % }
+
+      </div>
+
+    </div>
+  </div>
