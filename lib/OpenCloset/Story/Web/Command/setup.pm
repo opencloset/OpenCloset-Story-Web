@@ -159,6 +159,9 @@ END_CONTENT
 
 !  letters-o.js
 <  /coffee/letters-o.coffee
+
+!  reports-donations-id.js
+<  /coffee/reports-donations-id.coffee
 END_CONTENT
         path($conf)->spew_utf8($content);
     }

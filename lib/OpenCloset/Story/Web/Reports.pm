@@ -5,6 +5,8 @@ use Mojo::Base "Mojolicious::Controller";
 
 our $VERSION = '0.005';
 
+use Mojo::Util;
+
 use OpenCloset::Constants::Category;
 
 sub donors_get {
@@ -241,7 +243,7 @@ sub donations_id_get {
     };
 
     my $order_message_count = 0;
-    my $order_message;
+    my @order_messages;
     {
         my $rs = $donation_rs->search(
             {
@@ -258,7 +260,15 @@ sub donations_id_get {
             },
         );
         $order_message_count = $rs->count;
-        $order_message = $rs->first->get_column("order_message") if $order_message_count;
+        while ( my $d = $rs->next ) {
+            my $message = $d->get_column("order_message");
+            next unless $message;
+
+            $message = Mojo::Util::xml_escape($message);
+            $message =~ s/\n/<br>\n/g;
+
+            push @order_messages, $message;
+        }
     };
 
     $self->render(
@@ -272,7 +282,7 @@ sub donations_id_get {
         rented_category_count_all => $rented_category_count_all,
         acceptance_order_count    => $acceptance_order_count,
         order_message_count       => $order_message_count,
-        order_message             => $order_message,
+        order_messages            => \@order_messages,
         preview_size              => 256,
     );
 }
