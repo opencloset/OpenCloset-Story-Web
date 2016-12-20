@@ -317,6 +317,10 @@ __END__
 
 ...
 
-=method donor_get
+=method donors_get
 
-=method donor_post
+=method donors_post
+
+=method donors_id_get
+
+=method donations_id_get
