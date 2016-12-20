@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.004     2016-12-20 16:38:30+09:00 Asia/Seoul
     - Browse donation list even if donation message doesn't exist (#34)
 
 0.003     2016-04-21 14:10:53+09:00 Asia/Seoul
