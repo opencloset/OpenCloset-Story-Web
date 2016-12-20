@@ -21,16 +21,23 @@
         %   if ( $user_rs && $user_rs->count ) {
           <div class="col s12 cards-container letters">
             % while ( my $user = $user_rs->next ) {
-            %   my $donation = $user->donations->first;
+            %   my $donation   = $user->donations->first;
+            %   my $user_name  = $user->name;
+            %   my $user_email = $user->email;
+            %   my $user_phone = $user->user_info->phone;
+
+            %   $user_email =~ s/^../\*\*/;
+            %   $user_email =~ s/\@../\@\*\*/;
+            %   $user_phone =~ s/^(...)..../$1\*\*\*\*/;
               <div class="card">
                 <div class="card-content black-text">
                   <p>
                     <a href="<%= url_for("/reports/donor/" . $user->id) %>">
-                      <%= $donation->user->name %>
+                      <%= $user_name %>
                       /
-                      <%= $donation->user->email %>
+                      <%= $user_email %>
                       /
-                      <%= $donation->user->user_info->phone %>
+                      <%= $user_phone %>
                     </a>
                   </p>
                   <p>
