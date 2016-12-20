@@ -255,38 +255,38 @@ sub _load_config {
                                         /
                                 ],
                             },
-                            "reports-donor" => {
+                            "reports-donors" => {
                                 title       => "기증 리포트",
                                 title_short => "기증 리포트",
-                                url         => "/reports/donor",
+                                url         => "/reports/donors",
                                 breadcrumb  => [
                                     qw/
                                         index
-                                        reports-donor
+                                        reports-donors
                                         /
                                 ],
                             },
-                            "reports-donor-id" => {
+                            "reports-donors-id" => {
                                 title       => "%s 님의 기증 리포트",
                                 title_short => "%s 님의 기증 리포트",
-                                url         => "/reports/donor/%d",
+                                url         => "/reports/donors/%d",
                                 breadcrumb  => [
                                     qw/
                                         index
-                                        reports-donor
-                                        reports-donor-id
+                                        reports-donors
+                                        reports-donors-id
                                         /
                                 ],
                             },
-                            "reports-donation-id" => {
+                            "reports-donations-id" => {
                                 title       => "%s 님의 %d년 %d월 %d일 기증 리포트",
                                 title_short => "%s 님의 %d년 %d월 %d일 기증 리포트",
-                                url         => "/reports/donation/%d",
+                                url         => "/reports/donations/%d",
                                 breadcrumb  => [
                                     qw/
                                         index
-                                        reports-donor
-                                        reports-donation-id
+                                        reports-donors
+                                        reports-donations-id
                                         /
                                 ],
                             },
@@ -396,11 +396,11 @@ sub startup {
     $r->get("/letters/o/:id")->to("letters#order_id_get");
     $r->get("/letters/o/:id/d")->to("letters#order_id_donation_get");
 
-    $r->get("/reports/donor")->to("reports#donor_get");
-    $r->post("/reports/donor")->to("reports#donor_post");
-    $r->get("/reports/donor/:id")->to("reports#donor_id_get");
+    $r->get("/reports/donors")->to("reports#donors_get");
+    $r->post("/reports/donors")->to("reports#donors_post");
+    $r->get("/reports/donors/:id")->to("reports#donors_id_get");
 
-    $r->get("/reports/donation/:id")->to("reports#donation_id_get");
+    $r->get("/reports/donations/:id")->to("reports#donations_id_get");
 
     my $if_auth = $r->under(
         sub {

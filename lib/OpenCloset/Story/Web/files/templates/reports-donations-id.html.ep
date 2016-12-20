@@ -1,4 +1,4 @@
-% my $_id          = "reports-donation-id";
+% my $_id          = "reports-donations-id";
 % my $_date        = $donation->create_date->clone->set_time_zone("Asia/Seoul");
 % my $_title       = sprintf( $page->{$_id}{title}, $donor->name, $_date->year, $_date->month, $_date->day );
 % my $_title_short = sprintf( $page->{$_id}{title_short}, $donor->name, $_date->year, $_date->month, $_date->day );

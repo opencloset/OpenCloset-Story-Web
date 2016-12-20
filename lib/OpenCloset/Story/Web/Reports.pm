@@ -7,17 +7,17 @@ our $VERSION = '0.004';
 
 use OpenCloset::Constants::Category;
 
-sub donor_get {
+sub donors_get {
     my $self = shift;
 
     $self->render(
-        template     => "reports-donor",
+        template     => "reports-donors",
         user_rs      => undef,
         preview_size => 128,
     );
 }
 
-sub donor_post {
+sub donors_post {
     my $self = shift;
 
     my $q    = $self->param("q");
@@ -34,7 +34,7 @@ sub donor_post {
 
     unless (@cond) {
         $self->render(
-            template     => "reports-donor",
+            template     => "reports-donors",
             user_rs      => undef,
             preview_size => 128,
             q            => $q,
@@ -63,14 +63,14 @@ sub donor_post {
     );
 
     $self->render(
-        template     => "reports-donor",
+        template     => "reports-donors",
         user_rs      => $user_rs,
         preview_size => 256,
         q            => $q,
     );
 }
 
-sub donor_id_get {
+sub donors_id_get {
     my $self = shift;
 
     my $donor_id = $self->param("id");
@@ -137,7 +137,7 @@ sub donor_id_get {
     };
 
     $self->render(
-        template                   => "reports-donor-id",
+        template                   => "reports-donors-id",
         donor                      => $donor,
         donation_rs                => $donation_rs,
         donated_clothes_count      => $donated_clothes_count,
@@ -148,7 +148,7 @@ sub donor_id_get {
     );
 }
 
-sub donation_id_get {
+sub donations_id_get {
     my $self = shift;
 
     my $donation_id = $self->param("id");
@@ -288,7 +288,7 @@ sub donation_id_get {
     };
 
     $self->render(
-        template                  => "reports-donation-id",
+        template                  => "reports-donations-id",
         donor                     => $donor,
         donation                  => $donation,
         donated_clothes_count     => $donated_clothes_count,

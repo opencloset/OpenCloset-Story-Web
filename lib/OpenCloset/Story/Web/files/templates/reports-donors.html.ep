@@ -1,4 +1,4 @@
-% my $_id = "reports-donor";
+% my $_id = "reports-donors";
 % layout "default", page_id => $_id;
 % title $page->{$_id}{title};
 
@@ -6,7 +6,7 @@
     <div class="section">
 
       <div class="row">
-        <form action="<%= url_for("/reports/donor") %>" method="post">
+        <form method="post">
           <div class="col s12 m6 offset-m3 l6 offset-l3 input-field">
             <i class="material-icons prefix">search</i>
             <input id="q" name="q" type="text" class="validate" value="<%= $q %>">

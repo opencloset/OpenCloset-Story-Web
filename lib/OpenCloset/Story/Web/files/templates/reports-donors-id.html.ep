@@ -1,4 +1,4 @@
-% my $_id          = "reports-donor-id";
+% my $_id          = "reports-donors-id";
 % my $_title       = sprintf( $page->{$_id}{title}, $donor->name );
 % my $_title_short = sprintf( $page->{$_id}{title_short}, $donor->name );
 % layout "default", page_id => $_id, page_title_short => $_title_short;

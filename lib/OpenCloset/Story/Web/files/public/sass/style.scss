@@ -499,7 +499,7 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
     }
 }
 
-#reports-donor {
+#reports-donors {
     .cards-container.letters {
         column-break-inside: avoid;
         .card {
@@ -537,7 +537,7 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
     }
 }
 
-#reports-donor-id {
+#reports-donors-id {
     .cards-container.letters {
         column-break-inside: avoid;
         .card {
@@ -605,7 +605,7 @@ $card-user-name-link-color-light: lighten($card-user-name-link-color, 20%) !defa
     }
 }
 
-#reports-donation-id {
+#reports-donations-id {
     .donation-info {
         font-size: 150%;
         padding: 20px;
