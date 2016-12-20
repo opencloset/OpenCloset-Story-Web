@@ -5,6 +5,8 @@ use Mojo::Base "Mojolicious::Controller";
 
 our $VERSION = '0.004';
 
+use OpenCloset::Constants::Category;
+
 sub donor_get {
     my $self = shift;
 
@@ -143,6 +145,161 @@ sub donor_id_get {
         rented_order_count         => $rented_order_count,
         rented_order_message_count => $rented_order_message_count,
         preview_size               => 256,
+    );
+}
+
+sub donation_id_get {
+    my $self = shift;
+
+    my $donation_id = $self->param("id");
+
+    my $donation_rs = $self->schema->resultset("Donation");
+    my $donation    = $donation_rs->find($donation_id);
+    $self->app->log->debug( $donation->id );
+    return $self->reply->not_found unless $donation;
+
+    my $donor = $donation->user;
+
+    my $donated_clothes_count = $donation->clothes->count;
+
+    my $donated_items = +{};
+    {
+        my $rs = $donation_rs->search(
+            {
+                "me.id"        => $donation_id,
+                "clothes.code" => { "!=" => undef },
+            },
+            {
+                join      => ["clothes"],
+                group_by  => ["clothes.category"],
+                "columns" => [
+                    { category => "clothes.category" },
+                    {
+                        count => { count => "clothes.category", -as => "clothes_category_count" },
+                    },
+                ],
+            },
+        );
+
+        my %result;
+        while ( my $row = $rs->next ) {
+            my %clothes = $row->get_columns;
+            my $category_to_string =
+                $OpenCloset::Constants::Category::LABEL_MAP{ $clothes{category} };
+            $result{$category_to_string} = $clothes{count};
+        }
+
+        $donated_items = \%result;
+    }
+
+    my $rented_order_count = 0;
+    {
+        my $rs = $donation_rs->search(
+            {
+                "me.id"        => $donation_id,
+                "clothes.code" => { "!=" => undef },
+                "order.id"     => { "!=" => undef },
+            },
+            {
+                join      => [
+                    { "clothes" => { "order_details" => "order" } },
+                ],
+                group_by  => ["order.id"],
+            },
+        );
+        $rented_order_count = $rs->count;
+    };
+
+    my $rented_category_count     = +{};
+    my $rented_category_count_all = 0;
+    {
+        my $rs = $donation_rs->search(
+            {
+                "me.id"        => $donation_id,
+                "clothes.code" => { "!=" => undef },
+                "order.id"     => { "!=" => undef },
+            },
+            {
+                join => [
+                    { "clothes" => { "order_details" => "order" } },
+                ],
+                group_by  => ["clothes.category"],
+                "columns" => [
+                    { category => "clothes.category" },
+                    { count    => { count => "clothes.category" } },
+                ],
+            },
+        );
+
+        my %result;
+        while ( my $row = $rs->next ) {
+            my %clothes = $row->get_columns;
+            my $category_to_string =
+                $OpenCloset::Constants::Category::LABEL_MAP{ $clothes{category} };
+            $result{$category_to_string} = $clothes{count};
+            $rented_category_count_all += $clothes{count};
+        }
+
+        $rented_category_count = \%result;
+    }
+
+    my $acceptance_order_count = 0;
+    {
+        my $rs = $donation_rs->search(
+            {
+                "me.id"        => $donation_id,
+                "clothes.code" => { "!=" => undef },
+                "order.id"     => { "!=" => undef },
+                "order.pass"   => 1,
+            },
+            {
+                join      => [
+                    { "clothes" => { "order_details" => "order" } },
+                ],
+                group_by  => ["order.id"],
+            },
+        );
+        $acceptance_order_count = $rs->count;
+    };
+
+    my $order_message_count = 0;
+    my $order_message;
+    {
+        my $rs = $donation_rs->search(
+            {
+                "me.id"         => $donation_id,
+                "clothes.code"  => { "!=" => undef },
+                "order.id"      => { "!=" => undef },
+                "order.message" => { "!=" => undef },
+            },
+            {
+                join      => [
+                    { "clothes" => { "order_details" => "order" } },
+                ],
+                group_by  => ["order.id"],
+                order_by  => { -desc => "order.id" },
+                "columns" => [
+                    { order_message => "order.message" },
+                ],
+            },
+        );
+        $order_message_count = $rs->count;
+        $order_message = $rs->first->get_column("order_message") if $order_message_count;
+    };
+
+    $self->render(
+        template                  => "reports-donation-id",
+        donor                     => $donor,
+        donation                  => $donation,
+        donated_clothes_count     => $donated_clothes_count,
+        donated_items             => $donated_items,
+        rented_order_count        => $rented_order_count,
+        rented_category_count     => $rented_category_count,
+        rented_category_count_all => $rented_category_count_all,
+        acceptance_order_count    => $acceptance_order_count,
+        order_message_count       => $order_message_count,
+        order_message             => $order_message,
+        preview_size              => 256,
     );
 }
 

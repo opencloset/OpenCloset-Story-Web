@@ -278,6 +278,18 @@ sub _load_config {
                                         /
                                 ],
                             },
+                            "reports-donation-id" => {
+                                title       => "%s 님의 %d년 %d월 %d일 기증 리포트",
+                                title_short => "%s 님의 %d년 %d월 %d일 기증 리포트",
+                                url         => "/reports/donation/%d",
+                                breadcrumb  => [
+                                    qw/
+                                        index
+                                        reports-donor
+                                        reports-donation-id
+                                        /
+                                ],
+                            },
                         },
                     },
                 },
@@ -387,6 +399,8 @@ sub startup {
     $r->get("/reports/donor")->to("reports#donor_get");
     $r->post("/reports/donor")->to("reports#donor_post");
     $r->get("/reports/donor/:id")->to("reports#donor_id_get");
+
+    $r->get("/reports/donation/:id")->to("reports#donation_id_get");
 
     my $if_auth = $r->under(
         sub {

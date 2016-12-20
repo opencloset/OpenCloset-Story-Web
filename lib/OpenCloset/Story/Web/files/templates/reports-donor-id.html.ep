@@ -27,10 +27,16 @@
           <div class="col s12 cards-container letters">
             % while ( my $donation = $donation_rs->next ) {
             %   my $date = $donation->create_date->clone->set_time_zone("Asia/Seoul");
+            %   my $date_str = sprintf(
+            %     "%d년 %d월 %d일",
+            %     $date->year,
+            %     $date->month,
+            %     $date->day,
+            %  );
               <div class="card">
                 <div class="card-content black-text">
                   <p>
-                    <%= $date->year %>년 <%= $date->month %>월 <%= $date->day %>일 기증
+                    <%= $date_str %> 기증
                   </p>
                   <p>
                     % my $message = substr( $donation->message, 0, $preview_size );
@@ -41,7 +47,7 @@
                   </p>
                 </div>
                 <div class="card-action">
-                  <a href="<%= url_for("/letters/d/" . $donation->id . "/o") %>"><span class="user-name"><%= $donation->user->name %></span>님께 드리는 감사 더 읽기 <i class="fa fa-arrow-right"></i></a>
+                  <a href="<%= url_for("/reports/donation/" . $donation->id) %>"><span class="user-name"><%= $donation->user->name %></span>님의 <%= $date_str %> 기증 보고서 <i class="fa fa-arrow-right"></i></a>
                 </div>
               </div>
             % }
