@@ -1,5 +1,6 @@
 requires "File::ShareDir" => "0";
 requires "Mojo::Base" => "0";
+requires "Mojo::Util" => "0";
 requires "Mojolicious::Commands" => "0";
 requires "Mojolicious::Plugin::AssetPack" => "1.04";
 requires "Mojolicious::Plugin::Authentication" => "0";
