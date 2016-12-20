@@ -47,7 +47,7 @@
                   </p>
                 </div>
                 <div class="card-action">
-                  <a href="<%= url_for("/reports/donation/" . $donation->id) %>"><span class="user-name"><%= $donation->user->name %></span>님의 <%= $date_str %> 기증 보고서 <i class="fa fa-arrow-right"></i></a>
+                  <a href="<%= url_for("/reports/donations/" . $donation->id) %>"><span class="user-name"><%= $donation->user->name %></span>님의 <%= $date_str %> 기증 보고서 <i class="fa fa-arrow-right"></i></a>
                 </div>
               </div>
             % }

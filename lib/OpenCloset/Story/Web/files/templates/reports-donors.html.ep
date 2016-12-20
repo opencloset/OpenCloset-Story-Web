@@ -32,7 +32,7 @@
               <div class="card">
                 <div class="card-content black-text">
                   <p>
-                    <a href="<%= url_for("/reports/donor/" . $user->id) %>">
+                    <a href="<%= url_for("/reports/donors/" . $user->id) %>">
                       <%= $user_name %>
                       /
                       <%= $user_email %>
