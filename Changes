@@ -1,9 +1,11 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - 기증 보고서 페이지에 이전 및 다음 감사 메시지를 열람할 수 있는 링크 추가 (#37)
 
 0.004     2016-12-20 16:38:30+09:00 Asia/Seoul
-    - Browse donation list even if donation message doesn't exist (#34)
+    - 뉴스 레터에 첨부할 기증 리포트 페이지 구현 (#33)
+    - 기증 메세지가 없어도 열람이 가능하게 함 (#34)
 
 0.003     2016-04-21 14:10:53+09:00 Asia/Seoul
     - /letters/d/:id: Add cross link (#5)
