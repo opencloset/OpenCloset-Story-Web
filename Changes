@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.006     2017-01-20 11:23:53+09:00 Asia/Seoul
     - 페이지 하단의 전화번호 변경 (#43)
 
 0.005     2016-12-20 19:04:58+09:00 Asia/Seoul

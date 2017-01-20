@@ -6,7 +6,7 @@ package OpenCloset::Story::Web;
 
 use Mojo::Base "Mojolicious";
 
-our $VERSION = '0.006';
+our $VERSION = '0.007';
 
 use File::ShareDir "dist_dir";
 use Path::Tiny;
