@@ -11,7 +11,7 @@ our $VERSION = '0.007';
 use File::ShareDir "dist_dir";
 use Path::Tiny;
 
-use OpenCloset::Schema 0.025;
+use OpenCloset::Schema;
 
 #
 # specify plugins explicitly
@@ -120,7 +120,7 @@ sub _load_config {
                             },
                             {
                                 name => "온라인 예약",
-                                url  => "https://online.theopencloset.net",
+                                url  => "https://share.theopencloset.net",
                             },
                             {
                                 name => "정장 기증",
@@ -319,7 +319,7 @@ sub _load_config {
 sub _to_abs {
     my ( $self, $dir ) = @_;
 
-    $dir = $self->home->rel_dir($dir) unless $dir =~ m{^/};
+    $dir = $self->home->rel_file($dir)->to_abs->to_string unless $dir =~ m{^/};
 
     return $dir;
 }
@@ -332,7 +332,7 @@ sub startup {
     my $app = shift;
 
     # set home folder
-    $app->home->parse( $app->home_path );
+    $app->home( $app->home->new( $app->home_path ) );
 
     {
         # setup logging path
