@@ -120,7 +120,7 @@ sub _load_config {
                             },
                             {
                                 name => "온라인 예약",
-                                url  => "https://online.theopencloset.net",
+                                url  => "https://share.theopencloset.net",
                             },
                             {
                                 name => "정장 기증",
