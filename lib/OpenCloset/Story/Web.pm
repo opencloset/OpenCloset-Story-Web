@@ -332,7 +332,7 @@ sub startup {
     my $app = shift;
 
     # set home folder
-    $app->home->parse( $app->home_path );
+    $app->home( $app->home->new( $app->home_path ) );
 
     {
         # setup logging path
