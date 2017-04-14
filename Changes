@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.007     2017-04-14 17:03:38+09:00 Asia/Seoul
     - 의존 모듈 버전을 갱신함
         - Mojolicious 7.30
         - Mojolicious::Plugin::AssetPack 1.41

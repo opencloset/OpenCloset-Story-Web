@@ -3,7 +3,7 @@ package OpenCloset::Story::Web::Reports;
 
 use Mojo::Base "Mojolicious::Controller";
 
-our $VERSION = '0.007';
+our $VERSION = '0.008';
 
 use Mojo::Util;
 
