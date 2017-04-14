@@ -11,7 +11,7 @@ our $VERSION = '0.007';
 use File::ShareDir "dist_dir";
 use Path::Tiny;
 
-use OpenCloset::Schema 0.025;
+use OpenCloset::Schema;
 
 #
 # specify plugins explicitly

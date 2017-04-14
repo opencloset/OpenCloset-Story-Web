@@ -1,6 +1,10 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - 의존 모듈 버전을 갱신함
+        - Mojolicious 7.30
+        - Mojolicious::Plugin::AssetPack 1.41
+        - OpenCloset::Schema 0.050
     - Mojo::Home의 사라진 API를 사용함 (#49)
     - 푸터의 온라인 예약 링크 주소를 변경함 (#48)
 
