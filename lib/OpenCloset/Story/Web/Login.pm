@@ -3,7 +3,7 @@ package OpenCloset::Story::Web::Login;
 
 use Mojo::Base "Mojolicious::Controller";
 
-our $VERSION = '0.007';
+our $VERSION = '0.008';
 
 sub login_get {
     my $self = shift;
