@@ -319,7 +319,7 @@ sub _load_config {
 sub _to_abs {
     my ( $self, $dir ) = @_;
 
-    $dir = $self->home->rel_dir($dir) unless $dir =~ m{^/};
+    $dir = $self->home->rel_file($dir)->to_abs->to_string unless $dir =~ m{^/};
 
     return $dir;
 }
@@ -332,7 +332,7 @@ sub startup {
     my $app = shift;
 
     # set home folder
-    $app->home->parse( $app->home_path );
+    $app->home( $app->home->new( $app->home_path ) );
 
     {
         # setup logging path
