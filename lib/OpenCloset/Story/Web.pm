@@ -126,10 +126,6 @@ sub _load_config {
                                 name => "정장 기증",
                                 url  => "https://donation.theopencloset.net",
                             },
-                            {
-                                name => "열린봉사자 모집",
-                                url  => "https://volunteer.theopencloset.net",
-                            },
                         ],
                         page => {
                             "error" => {
