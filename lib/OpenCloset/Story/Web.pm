@@ -115,20 +115,16 @@ sub _load_config {
                                 url  => "https://theopencloset.net",
                             },
                             {
-                                name => "방문 예약",
+                                name => "방문대여 예약",
                                 url  => "https://visit.theopencloset.net",
                             },
                             {
-                                name => "온라인 예약",
+                                name => "택배대여 신청",
                                 url  => "https://share.theopencloset.net",
                             },
                             {
                                 name => "정장 기증",
                                 url  => "https://donation.theopencloset.net",
-                            },
-                            {
-                                name => "열린봉사자 모집",
-                                url  => "https://volunteer.theopencloset.net",
                             },
                         ],
                         page => {
