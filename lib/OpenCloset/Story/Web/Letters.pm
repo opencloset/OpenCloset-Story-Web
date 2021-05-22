@@ -3,7 +3,7 @@ package OpenCloset::Story::Web::Letters;
 
 use Mojo::Base "Mojolicious::Controller";
 
-our $VERSION = '0.008';
+our $VERSION = '0.009';
 
 sub donation_get {
     my $self = shift;

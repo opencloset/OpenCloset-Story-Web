@@ -1,6 +1,8 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+
+0.008     2021-05-22 11:43:28+09:00 Asia/Seoul
     - 하단 푸터를 최신 정보로 갱신 (#56)
 
 0.007     2017-04-14 17:03:38+09:00 Asia/Seoul
