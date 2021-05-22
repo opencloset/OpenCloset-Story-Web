@@ -1,6 +1,7 @@
 Revision history for {{$dist->name}}
 
 {{$NEXT}}
+    - 하단 푸터를 최신 정보로 갱신 (#56)
 
 0.007     2017-04-14 17:03:38+09:00 Asia/Seoul
     - 의존 모듈 버전을 갱신함
